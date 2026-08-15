@@ -5,6 +5,9 @@ import { supabaseAdmin } from "@/lib/db/supabase-admin";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
+// The exact drone IDs present in the fixtures directory
+const FIXTURE_DRONE_IDS = ["drone-alpha", "drone-bravo", "drone-charlie", "drone-delta", "drone-echo"];
+
 function mockReplayRequest(events: any[]) {
   return new NextRequest("http://localhost/api/events/replay", {
     method: "POST",
@@ -24,41 +27,59 @@ function loadAllFixtures() {
   return allEvents;
 }
 
+async function clearFixtureDrones() {
+  for (const droneId of FIXTURE_DRONE_IDS) {
+    await supabaseAdmin.from("telemetry_events").delete().eq("drone_id", droneId);
+    await supabaseAdmin.from("drone_state_versions").delete().eq("drone_id", droneId);
+    await supabaseAdmin.from("conflict_decisions").delete().eq("drone_id", droneId);
+  }
+}
+
+async function snapshotFixtureState() {
+  const { data: states } = await supabaseAdmin
+    .from("drone_state_versions")
+    .select("drone_id, version, effective_timestamp, lat, lon, alt, confidence, source_of_truth, status")
+    .in("drone_id", FIXTURE_DRONE_IDS)
+    .order("drone_id")
+    .order("version");
+
+  const { data: decisions } = await supabaseAdmin
+    .from("conflict_decisions")
+    .select("drone_id, decision_timestamp, rule_applied, output_status")
+    .in("drone_id", FIXTURE_DRONE_IDS)
+    .order("drone_id")
+    .order("decision_timestamp");
+
+  return { states, decisions };
+}
+
 describe("Determinism Acceptance Test", () => {
   let allEvents: any[];
-  
+
   beforeAll(async () => {
     allEvents = loadAllFixtures();
-    // Clear EVERYTHING (ignore nulls or just use delete with neq)
-    await supabaseAdmin.from("telemetry_events").delete().neq("id", "00000000-0000-0000-0000-000000000000");
-    await supabaseAdmin.from("drone_state_versions").delete().neq("id", "00000000-0000-0000-0000-000000000000");
-    await supabaseAdmin.from("conflict_decisions").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+    await clearFixtureDrones();
   }, 30000);
 
   it("replaying all fixtures twice yields exact deep equal database derived state", async () => {
-    // 1. Replay first time
+    // 1. Replay first time (events in fixture file order)
     const res1 = await POST(mockReplayRequest(allEvents));
     expect(res1.status).toBe(200);
-    
-    // Snapshot state
-    const { data: state1 } = await supabaseAdmin.from("drone_state_versions").select("drone_id, version, effective_timestamp, lat, lon, alt, confidence, source_of_truth, status").order("drone_id").order("version");
-    const { data: dec1 } = await supabaseAdmin.from("conflict_decisions").select("drone_id, decision_timestamp, rule_applied, output_status").order("drone_id").order("decision_timestamp");
 
-    // 2. Truncate events table to truly replay from scratch
-    await supabaseAdmin.from("telemetry_events").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+    // Snapshot fixture-drone state after first replay
+    const { states: state1, decisions: dec1 } = await snapshotFixtureState();
 
-    // 3. Shuffle events (reverse order)
+    // 2. Clear only fixture drone data, then replay in reverse order
+    await clearFixtureDrones();
     const reversedEvents = [...allEvents].reverse();
 
-    // 4. Replay second time
     const res2 = await POST(mockReplayRequest(reversedEvents));
     expect(res2.status).toBe(200);
 
-    // Snapshot state again
-    const { data: state2 } = await supabaseAdmin.from("drone_state_versions").select("drone_id, version, effective_timestamp, lat, lon, alt, confidence, source_of_truth, status").order("drone_id").order("version");
-    const { data: dec2 } = await supabaseAdmin.from("conflict_decisions").select("drone_id, decision_timestamp, rule_applied, output_status").order("drone_id").order("decision_timestamp");
+    // Snapshot fixture-drone state after second replay
+    const { states: state2, decisions: dec2 } = await snapshotFixtureState();
 
-    // 5. Assert deep equality
+    // 3. Assert deep equality — order of submission must not change derived state
     expect(state1).toBeDefined();
     expect(state2).toBeDefined();
     expect(state1!.length).toBeGreaterThan(0);
