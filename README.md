@@ -5,7 +5,7 @@ A real-time sensor fusion conflict resolver for autonomous drone operations. Thi
 
 This architecture acts as an immutable event-sourced ledger, natively satisfying all requirements for determinism, idempotency, and replayability.
 
----
+
 
 ## Deliverables Checklist
 
@@ -34,14 +34,17 @@ Automated Vitest integration tests covering all edge cases, running against the 
 ### 3. Documentation
 Included below are the strict instructions for setting up, running, testing, and locating outputs.
 
----
+
 
 ## Technical Architecture (Event Sourcing)
 The system never mutates state in place. It relies on an append-only `telemetry_events` log. Drone states are continuously derived by executing a deterministic canonical sort (Timestamp -> Source -> UUID) followed by a pure functional fold. This guarantees that duplicate data, network latency, and out-of-order deliveries are handled natively by the architecture. 
 
 Duplicate prevention is handled firmly at the database constraint level via a SHA-256 `dedupe_key`.
 
----
+<img width="2720" height="2160" alt="sensor_fusion_architecture" src="https://github.com/user-attachments/assets/3de9e871-0fc0-403a-922a-f6eed8d7f63e" />
+
+
+
 
 ## Setup Instructions
 
@@ -70,7 +73,7 @@ Run the schema migration found at `supabase/migrations/20260815120151_create_tel
 npm install --legacy-peer-deps
 ```
 
----
+
 
 ## Run Instructions
 
@@ -86,7 +89,7 @@ Navigate to `http://localhost:3000` in your browser.
 3. Use the tabs to toggle between the chronological "State Timeline" and the "Conflict Ledger" to view plain-English rule explanations.
 4. Click "Edit Rules" in the top navigation to dynamically adjust conflict resolution logic (Bonus Scope).
 
----
+
 
 ## Test Instructions
 
@@ -98,7 +101,7 @@ npx vitest run tests/
 **Key Acceptance Test (`determinism.test.ts`):** 
 This test proves the core system invariant. It replays the entire suite of fixtures in forward alphabetical order, snapshots the database, truncates the derived tables, replays the fixtures in reverse alphabetical order, and asserts deep equality between the final states.
 
----
+
 
 ## Output Locations
 
