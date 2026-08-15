@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { trackEvent } from "@/lib/analytics/posthog";
-import { Settings, X, Check } from "lucide-react";
+import { Settings, X, Check, Save } from "lucide-react";
+import { useDashboardStore } from "@/lib/store/dashboard";
 
 interface Rule {
   id: string;
@@ -13,12 +14,14 @@ interface Rule {
 }
 
 export default function RuleEditor() {
-  const [open, setOpen] = useState(false);
+  const { setView } = useDashboardStore();
+  
   const [activeRule, setActiveRule] = useState<Rule | null>(null);
   const [editorValue, setEditorValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
   const [fetching, setFetching] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const fetchRules = async () => {
     setFetching(true);
@@ -27,16 +30,22 @@ export default function RuleEditor() {
       const json = await res.json();
       setActiveRule(json.active);
       setEditorValue(JSON.stringify(json.active?.rules_json ?? [], null, 2));
+      setHasUnsavedChanges(false);
     } catch {
-      // ignore
+      setStatus({ ok: false, msg: "Failed to fetch rules" });
     } finally {
       setFetching(false);
     }
   };
 
   useEffect(() => {
-    if (open) fetchRules();
-  }, [open]);
+    fetchRules();
+  }, []);
+
+  const handleEditorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEditorValue(e.target.value);
+    setHasUnsavedChanges(true);
+  };
 
   const applyRules = async () => {
     setLoading(true);
@@ -50,8 +59,9 @@ export default function RuleEditor() {
       });
       const json = await res.json();
       if (res.ok) {
-        setStatus({ ok: true, msg: `Rules updated to v${json.version}` });
+        setStatus({ ok: true, msg: `Rules successfully updated to v${json.version}` });
         trackEvent("rules_updated", { version: json.version });
+        setHasUnsavedChanges(false);
         fetchRules();
       } else {
         setStatus({ ok: false, msg: json.error ?? "Unknown error" });
@@ -64,79 +74,63 @@ export default function RuleEditor() {
   };
 
   return (
-    <>
-      <button
-        id="open-rule-editor"
-        onClick={() => setOpen(true)}
-        className="py-1.5 px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs text-zinc-300 font-semibold transition-all flex items-center justify-center gap-2"
-      >
-        <Settings size={14} /> Edit Rules
-      </button>
-
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={() => setOpen(false)}>
-          <div
-            className="bg-[#111118] border border-white/10 rounded-2xl w-full max-w-2xl shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
-              <div>
-                <h3 className="font-serif text-xl text-white">Conflict Resolution Rules</h3>
-                {activeRule && (
-                  <p className="text-xs font-medium text-zinc-500 mt-0.5">Active: version {activeRule.version}</p>
-                )}
-              </div>
-              <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white transition-colors"><X size={20} /></button>
-            </div>
-
-            {/* Body */}
-            <div className="p-6">
-              <p className="text-xs text-zinc-500 mb-3">
-                Modify the ordered rule set below. Changes are versioned — the prior version is preserved for audit purposes.
-                Rules are evaluated top-to-bottom; the first match wins.
-              </p>
-
-              {fetching ? (
-                <div className="h-64 rounded-xl bg-white/5 animate-pulse" />
-              ) : (
-                <textarea
-                  id="rule-editor-textarea"
-                  value={editorValue}
-                  onChange={(e) => setEditorValue(e.target.value)}
-                  rows={16}
-                  spellCheck={false}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-xs font-mono text-zinc-200 focus:outline-none focus:border-indigo-500/50 resize-none leading-relaxed"
-                />
-              )}
-
-              {status && (
-                <p className={`mt-3 text-sm font-semibold flex items-center gap-2 ${status.ok ? "text-emerald-400" : "text-red-400"}`}>
-                  {status.ok ? <Check size={16} /> : <X size={16} />} {status.msg}
-                </p>
-              )}
-            </div>
-
-            {/* Footer */}
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-white/8">
-              <button
-                onClick={() => setOpen(false)}
-                className="px-4 py-2 rounded-lg text-xs text-zinc-400 hover:text-white font-semibold transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                id="apply-rules-btn"
-                onClick={applyRules}
-                disabled={loading || fetching}
-                className="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-bold transition-all duration-150"
-              >
-                {loading ? "Applying…" : "Apply Rules"}
-              </button>
-            </div>
-          </div>
+    <div className="flex flex-col h-full bg-background">
+      {/* Header */}
+      <div className="shrink-0 flex items-center justify-between p-6 border-b border-border">
+        <div>
+          <h2 className="text-2xl font-serif text-foreground tracking-tight">Rule Editor</h2>
+          <p className="text-sm font-medium text-muted-foreground mt-0.5">
+            {activeRule ? `Active Version: ${activeRule.version}` : "Loading..."}
+          </p>
         </div>
-      )}
-    </>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setView("dashboard")}
+            className="px-4 py-2 rounded-md bg-secondary hover:bg-secondary/80 text-secondary-foreground text-sm font-semibold transition-colors flex items-center gap-2 border border-border/50 shadow-sm"
+          >
+            <X size={16} /> Close
+          </button>
+          <button
+            onClick={applyRules}
+            disabled={loading || fetching || !hasUnsavedChanges}
+            className="px-4 py-2 rounded-md bg-primary hover:bg-primary/90 disabled:opacity-50 text-primary-foreground text-sm font-bold transition-all shadow-sm flex items-center gap-2"
+          >
+            {loading ? <Settings size={16} className="animate-spin" /> : <Save size={16} />}
+            {loading ? "Applying…" : "Save Rules"}
+          </button>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="flex-1 flex flex-col p-6 min-h-0 bg-secondary/20">
+        <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col min-h-0">
+          <p className="text-sm font-medium text-muted-foreground mb-4">
+            Modify the ordered JSON rule set below. Changes are versioned automatically. 
+            The engine evaluates rules sequentially (top-to-bottom); the first matching rule dictates the source of truth.
+          </p>
+
+          {fetching ? (
+            <div className="flex-1 rounded-md bg-muted animate-pulse border border-border" />
+          ) : (
+            <textarea
+              value={editorValue}
+              onChange={handleEditorChange}
+              spellCheck={false}
+              className="flex-1 w-full bg-card border border-border rounded-md p-4 text-sm font-mono text-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring resize-none shadow-sm"
+            />
+          )}
+
+          {status && (
+            <div className={`mt-4 p-3 rounded-md text-sm font-semibold flex items-center gap-2 border shadow-sm ${
+              status.ok 
+                ? "bg-emerald-50 text-emerald-700 border-emerald-200" 
+                : "bg-red-50 text-red-700 border-red-200"
+            }`}>
+              {status.ok ? <Check size={16} /> : <X size={16} />} {status.msg}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

@@ -11,9 +11,9 @@ const SOURCE_COLORS: Record<string, string> = {
 };
 
 const STATUS_MARKER_COLOR: Record<string, string> = {
-  resolved: "#34d399",
-  unresolved: "#fbbf24",
-  stale: "#71717a",
+  resolved: "#10b981", // emerald-500
+  unresolved: "#f59e0b", // amber-500
+  stale: "#a1a1aa", // zinc-400
 };
 
 interface DroneMapProps {
@@ -28,6 +28,8 @@ export default function DroneMap({ selectedDroneId, onSelectDrone }: DroneMapPro
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const drones = useDashboardStore((s) => s.drones);
   const isInitialized = useRef(false);
+  // Only auto-fit once — never snap the viewport after user has panned/zoomed
+  const hasFitBounds = useRef(false);
 
   useEffect(() => {
     if (isInitialized.current || !mapContainerRef.current) return;
@@ -128,7 +130,7 @@ export default function DroneMap({ selectedDroneId, onSelectDrone }: DroneMapPro
         } else {
           circlesRef.current[drone.drone_id] = L.circle(
             [drone.latest_lat, drone.latest_lon],
-            { radius: 80, color: "#fbbf24", fillColor: "#fbbf24", fillOpacity: 0.08, weight: 1, dashArray: "4" }
+            { radius: 80, color: "#f59e0b", fillColor: "#f59e0b", fillOpacity: 0.1, weight: 1, dashArray: "4" }
           ).addTo(map);
         }
       } else if (circlesRef.current[drone.drone_id]) {
@@ -145,17 +147,18 @@ export default function DroneMap({ selectedDroneId, onSelectDrone }: DroneMapPro
       }
     });
 
-    // Auto-fit to show all drones (only if there are any)
-    if (dronesWithPos.length > 0 && Object.keys(markersRef.current).length > 0) {
+    // Auto-fit ONCE on first data load — never again so user pan/zoom is preserved
+    if (!hasFitBounds.current && dronesWithPos.length > 0 && Object.keys(markersRef.current).length > 0) {
       const group = L.featureGroup(Object.values(markersRef.current));
       try {
-        map.fitBounds(group.getBounds().pad(0.3), { maxZoom: 15 });
+        map.fitBounds(group.getBounds().pad(0.3), { maxZoom: 15, animate: false });
+        hasFitBounds.current = true;
       } catch {}
     }
   }, [drones, selectedDroneId, onSelectDrone]);
 
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden border border-white/8">
+    <div className="relative w-full h-full overflow-hidden border-b border-border z-0">
       {/* Leaflet CSS */}
       <link
         rel="stylesheet"
@@ -165,23 +168,23 @@ export default function DroneMap({ selectedDroneId, onSelectDrone }: DroneMapPro
       <div ref={mapContainerRef} className="w-full h-full" style={{ minHeight: 320 }} />
 
       {/* Legend */}
-      <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 z-[1000] text-xs space-y-1">
+      <div className="absolute bottom-3 right-3 bg-card/90 backdrop-blur-sm rounded-md px-3 py-2 border border-border shadow-sm z-[1000] text-[10px] space-y-1 font-semibold uppercase tracking-wider text-muted-foreground">
         {Object.entries(STATUS_MARKER_COLOR).map(([status, color]) => (
           <div key={status} className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: color }} />
-            <span className="text-zinc-400 capitalize">{status}</span>
+            <span>{status}</span>
           </div>
         ))}
-        <div className="flex items-center gap-2 pt-1 border-t border-white/10">
-          <div className="w-2.5 h-2.5 rounded-full border border-amber-400/50 bg-amber-400/10" />
-          <span className="text-zinc-400">Conflict zone</span>
+        <div className="flex items-center gap-2 pt-1.5 mt-1 border-t border-border">
+          <div className="w-2.5 h-2.5 rounded-full border border-amber-500/50 bg-amber-500/10" />
+          <span>Conflict zone</span>
         </div>
       </div>
 
       {/* Empty state */}
       {drones.filter((d) => d.latest_lat != null).length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-[999] pointer-events-none">
-          <p className="text-zinc-500 text-sm">Load fixtures to see drone positions on the map</p>
+        <div className="absolute inset-0 flex items-center justify-center bg-background/60 z-[999] pointer-events-none backdrop-blur-sm">
+          <p className="text-muted-foreground text-[11px] font-medium">Load fixtures to see drone positions on the map</p>
         </div>
       )}
     </div>

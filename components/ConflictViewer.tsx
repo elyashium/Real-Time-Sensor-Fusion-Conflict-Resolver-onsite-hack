@@ -46,12 +46,12 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
 
   if (loading) return (
     <div className="space-y-2">
-      {[1, 2].map((i) => <div key={i} className="h-20 rounded-xl bg-white/5 animate-pulse" />)}
+      {[1, 2].map((i) => <div key={i} className="h-16 rounded-md bg-muted animate-pulse border border-border" />)}
     </div>
   );
 
   if (decisions.length === 0) return (
-    <p className="text-zinc-500 text-sm text-center py-6">No conflict decisions recorded.</p>
+    <p className="text-muted-foreground text-[11px] text-center py-6">No conflict decisions recorded.</p>
   );
 
   return (
@@ -62,49 +62,49 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
         return (
           <div
             key={d.id}
-            className={`rounded-xl border overflow-hidden transition-all duration-200 cursor-pointer
+            className={`rounded-md border overflow-hidden transition-all duration-200 cursor-pointer shadow-sm
               ${isConflict
-                ? "border-amber-500/25 bg-amber-500/5"
-                : "border-emerald-500/20 bg-emerald-500/4"
+                ? "border-amber-200 bg-amber-50"
+                : "border-border bg-card"
               }`}
             onClick={() => setExpanded(isOpen ? null : d.id)}
             id={`conflict-${d.id}`}
           >
-            <div className="flex items-center justify-between px-4 py-3">
+            <div className="flex items-center justify-between px-3 py-2">
               <div className="flex items-center gap-2">
-                <span className="text-xl">
-                  {isConflict ? <Zap size={18} className="text-amber-500" /> : <Check size={18} className="text-emerald-500" />}
+                <span className="text-lg">
+                  {isConflict ? <Zap size={14} className="text-amber-600" /> : <Check size={14} className="text-emerald-600" />}
                 </span>
-                <span className="text-xs font-mono text-zinc-300">
+                <span className="text-[10px] font-mono text-muted-foreground">
                   {new Date(d.decision_timestamp).toLocaleString()}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-500">{d.input_event_ids.length} events</span>
-                <span className={`text-xs transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}>▾</span>
+                <span className="text-[10px] text-muted-foreground">{d.input_event_ids.length} events</span>
+                <span className={`text-[10px] text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}>▾</span>
               </div>
             </div>
 
             {isOpen && (
-              <div className="px-4 pb-4 border-t border-white/6 pt-3 space-y-2">
+              <div className="px-3 pb-3 border-t border-border pt-2 space-y-2 bg-secondary/20">
                 <div>
-                  <span className="text-xs text-zinc-500 uppercase tracking-wider">Rule Applied</span>
-                  <p className="text-sm text-zinc-200 mt-0.5">{d.rule_applied}</p>
-                  {d.rule_id && <p className="text-xs text-zinc-500 font-mono">id: {d.rule_id}</p>}
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Rule Applied</span>
+                  <p className="text-xs text-foreground mt-0.5">{d.rule_applied}</p>
+                  {d.rule_id && <p className="text-[10px] text-muted-foreground font-mono">id: {d.rule_id}</p>}
                 </div>
                 {d.output_lat != null && (
                   <div>
-                    <span className="text-xs text-zinc-500 uppercase tracking-wider">Output Position</span>
-                    <p className="text-xs font-mono text-zinc-300 mt-0.5">
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Output Position</span>
+                    <p className="text-[10px] font-mono text-muted-foreground mt-0.5">
                       {d.output_lat.toFixed(5)}, {d.output_lon?.toFixed(5)} @ {d.output_alt?.toFixed(0)}m
                     </p>
                   </div>
                 )}
                 <div>
-                  <span className="text-xs text-zinc-500 uppercase tracking-wider">Input Event IDs</span>
+                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Input Event IDs</span>
                   <div className="mt-1 space-y-0.5">
                     {d.input_event_ids.map((id) => (
-                      <p key={id} className="text-xs font-mono text-zinc-500 truncate">{id}</p>
+                      <p key={id} className="text-[10px] font-mono text-muted-foreground truncate">{id}</p>
                     ))}
                   </div>
                 </div>

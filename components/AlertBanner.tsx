@@ -15,10 +15,10 @@ export default function AlertBanner({ onViewDrone }: AlertBannerProps) {
   if (unresolvedDrones.length === 0) return null;
 
   return (
-    <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-2.5">
+    <div className="bg-amber-50 border-b border-amber-200 px-6 py-2">
       <div className="max-w-screen-2xl mx-auto flex items-center gap-3 flex-wrap">
-        <span className="text-amber-400 font-semibold text-sm flex items-center gap-1.5">
-          <AlertTriangle size={16} className="animate-pulse" />
+        <span className="text-amber-800 font-semibold text-xs flex items-center gap-1.5">
+          <AlertTriangle size={14} className="animate-pulse" />
           {unresolvedDrones.length} drone{unresolvedDrones.length !== 1 ? "s" : ""} with unresolved conflicts
         </span>
         <div className="flex gap-2 flex-wrap">
@@ -26,7 +26,7 @@ export default function AlertBanner({ onViewDrone }: AlertBannerProps) {
             <button
               key={d.drone_id}
               onClick={() => onViewDrone(d.drone_id)}
-              className="text-xs px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/25 hover:bg-amber-500/25 transition-colors font-mono"
+              className="text-[11px] px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 border border-amber-200 hover:bg-amber-200 transition-colors font-mono"
             >
               {d.drone_id} ({d.unresolved_count})
             </button>

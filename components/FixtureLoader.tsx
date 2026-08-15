@@ -62,18 +62,18 @@ export default function FixtureLoader({ onLoad }: FixtureLoaderProps) {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-1">
       <button
         onClick={loadAll}
         disabled={!!loading}
-        className="w-full py-2.5 px-4 rounded-xl bg-indigo-600/80 hover:bg-indigo-600 disabled:opacity-50 text-white text-sm font-semibold transition-all duration-200 border border-indigo-500/50 mb-4 flex items-center justify-center gap-2"
+        className="w-full py-1.5 px-2 rounded-md bg-secondary hover:bg-secondary/80 disabled:opacity-50 text-secondary-foreground text-[10px] font-semibold transition-colors border border-border flex items-center justify-center gap-1.5 mb-2"
       >
         {loading === "all" ? (
-          <Loader2 size={16} className="animate-spin" />
+          <Loader2 size={12} className="animate-spin" />
         ) : (
-          <Package size={16} />
+          <Package size={12} />
         )}
-        Load All Fixtures
+        Load All
       </button>
 
       {FIXTURES.map((f) => {
@@ -81,35 +81,30 @@ export default function FixtureLoader({ onLoad }: FixtureLoaderProps) {
         return (
           <div
             key={f.id}
-            className="flex flex-col p-3 rounded-xl border border-white/8 bg-white/3"
+            className="flex items-center gap-1.5 px-2 py-1.5 rounded-md border border-border bg-card"
           >
-            <div className="flex items-center gap-3">
+            <span className="text-muted-foreground shrink-0">
               {loading === f.id ? (
-                <Loader2 size={14} className="animate-spin text-zinc-500" />
+                <Loader2 size={11} className="animate-spin" />
               ) : result ? (
                 result.ok ? (
-                  <CheckCircle2 size={14} className="text-emerald-500" />
+                  <CheckCircle2 size={11} className="text-emerald-600" />
                 ) : (
-                  <XCircle size={14} className="text-red-500" />
+                  <XCircle size={11} className="text-red-600" />
                 )
               ) : (
-                <span className="text-zinc-500">{f.icon}</span>
+                <span>{f.icon}</span>
               )}
-              <span className="text-xs font-semibold text-zinc-300 flex-1">{f.label}</span>
-              <button
-                id={`load-fixture-${f.id}`}
-                onClick={() => loadFixture(f.id)}
-                disabled={!!loading}
-                className="shrink-0 px-3 py-1.5 rounded-lg bg-white/6 hover:bg-white/10 text-xs text-zinc-300 font-semibold transition-all duration-150 disabled:opacity-50"
-              >
-                {loading === f.id ? "..." : "Load"}
-              </button>
-            </div>
-            {result && (
-              <div className={`mt-1.5 ml-8 text-[10px] font-mono leading-tight ${result.ok ? "text-emerald-400/80" : "text-red-400"}`}>
-                {result.msg}
-              </div>
-            )}
+            </span>
+            <span className="text-[10px] font-medium text-foreground flex-1 truncate">{f.label}</span>
+            <button
+              id={`load-fixture-${f.id}`}
+              onClick={() => loadFixture(f.id)}
+              disabled={!!loading}
+              className="shrink-0 text-[9px] font-semibold px-1.5 py-0.5 rounded border border-transparent hover:border-border hover:bg-secondary text-muted-foreground transition-colors disabled:opacity-50"
+            >
+              {loading === f.id ? "…" : "Load"}
+            </button>
           </div>
         );
       })}

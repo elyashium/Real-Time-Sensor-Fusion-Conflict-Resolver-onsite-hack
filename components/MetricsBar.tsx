@@ -21,28 +21,28 @@ export default function MetricsBar() {
   const totalUnresolved = drones.reduce((sum, d) => sum + d.unresolved_count, 0);
 
   const stats: Stat[] = [
-    { label: "Total Events", value: totalEvents, icon: <Radio size={16} /> },
-    { label: "Active Drones", value: activeDrones, icon: <Crosshair size={16} /> },
-    { label: "Unresolved Conflicts", value: totalUnresolved, icon: <Zap size={16} />, accent: totalUnresolved > 0 ? "text-amber-400" : undefined },
-    { label: "Conflict Drones", value: unresolvedDrones, icon: <AlertTriangle size={16} />, accent: unresolvedDrones > 0 ? "text-amber-400" : undefined },
+    { label: "Total Events", value: totalEvents, icon: <Radio size={14} className="text-muted-foreground" /> },
+    { label: "Active Drones", value: activeDrones, icon: <Crosshair size={14} className="text-muted-foreground" /> },
+    { label: "Unresolved Conflicts", value: totalUnresolved, icon: <Zap size={14} />, accent: totalUnresolved > 0 ? "text-amber-600 font-semibold" : "text-muted-foreground" },
+    { label: "Conflict Drones", value: unresolvedDrones, icon: <AlertTriangle size={14} />, accent: unresolvedDrones > 0 ? "text-amber-600 font-semibold" : "text-muted-foreground" },
   ];
 
   return (
-    <div className="border-b border-white/6 bg-black/20">
-      <div className="max-w-screen-xl mx-auto px-6 py-3 flex items-center gap-8">
+    <div className="border-b border-border bg-card">
+      <div className="max-w-screen-2xl mx-auto px-6 py-2 flex items-center gap-6 overflow-x-auto custom-scrollbar">
         {stats.map((s) => (
-          <div key={s.label} className="flex items-center gap-2.5">
-            <span className="text-base">{s.icon}</span>
-            <div>
-              <p className={`text-lg font-bold leading-tight ${s.accent ?? "text-white"}`}>
+          <div key={s.label} className="flex items-center gap-2 shrink-0">
+            <span className={s.accent ?? "text-muted-foreground"}>{s.icon}</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{s.label}</span>
+              <span className={`text-sm font-semibold leading-none ${s.accent ?? "text-foreground"}`}>
                 <AnimatedNumber value={s.value} />
-              </p>
-              <p className="text-xs text-zinc-500 leading-tight">{s.label}</p>
+              </span>
             </div>
           </div>
         ))}
-        <div className="ml-auto flex items-center gap-2 text-xs text-zinc-600">
-          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+        <div className="ml-auto shrink-0 flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 animate-pulse" />
           polling 2s
         </div>
       </div>

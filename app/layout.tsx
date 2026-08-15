@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${garamond.variable}`}>
-      <body className={`${GeistSans.className} antialiased bg-[#0a0a0f] text-zinc-100 h-screen overflow-hidden flex flex-col`}>
+      <body className={`${GeistSans.className} antialiased bg-background text-foreground h-screen overflow-hidden flex flex-col selection:bg-zinc-200 selection:text-zinc-900`}>
         <PostHogProvider>
           {children}
         </PostHogProvider>

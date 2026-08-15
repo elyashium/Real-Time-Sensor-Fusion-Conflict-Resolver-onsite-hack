@@ -6,12 +6,102 @@ import DroneList from "@/components/DroneList";
 import DroneTimeline from "@/components/DroneTimeline";
 import ConflictViewer from "@/components/ConflictViewer";
 import FixtureLoader from "@/components/FixtureLoader";
-import MetricsBar from "@/components/MetricsBar";
 import AlertBanner from "@/components/AlertBanner";
 import RuleEditor from "@/components/RuleEditor";
 import DroneMap from "@/components/DroneMap";
-import { Crosshair, Download, List, Zap, Map as MapIcon, Compass } from "lucide-react";
+import { AnimatedNumber } from "@/components/ui/badges";
+import {
+  Crosshair, Download, List, Zap, Settings, X,
+  Radio, AlertTriangle, ChevronDown, ChevronUp, Info
+} from "lucide-react";
 
+// ── Tutorial overlay ──────────────────────────────────────────────────────────
+function Tutorial({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[200] bg-foreground/30 backdrop-blur-[2px] flex items-center justify-center p-4">
+      <div className="bg-card border border-border rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+        <button
+          onClick={onDismiss}
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+          aria-label="Dismiss tutorial"
+        >
+          <X size={16} />
+        </button>
+
+        <div className="flex items-center gap-2 mb-4">
+          <Crosshair size={16} className="text-foreground" />
+          <h2 className="text-sm font-semibold text-foreground">Getting Started</h2>
+        </div>
+
+        <div className="space-y-4 text-[11px] text-muted-foreground leading-relaxed">
+          <div className="grid grid-cols-3 gap-3">
+            <div className="border border-border rounded-md p-3 space-y-1">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-foreground">Left — Fleet</div>
+              <p>Lists every active drone. Click any entry to select it and load its telemetry history.</p>
+            </div>
+            <div className="border border-border rounded-md p-3 space-y-1 bg-secondary/30">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-foreground">Center — Map</div>
+              <p>Live spatial view. Markers reflect resolution status. Click markers to select. Amber rings = unresolved conflict zones.</p>
+            </div>
+            <div className="border border-border rounded-md p-3 space-y-1">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-foreground">Right — Telemetry</div>
+              <p>Shows the selected drone's state timeline and conflict decisions with full audit trail.</p>
+            </div>
+          </div>
+
+          <div className="border-t border-border pt-4 space-y-2">
+            <div className="font-medium text-foreground text-[10px] uppercase tracking-wider">Quick Start</div>
+            <ol className="space-y-1 list-decimal list-inside">
+              <li>Expand <strong className="text-foreground">Simulation Data</strong> in the left panel and click a fixture to load it.</li>
+              <li>Drones appear on the map and in the fleet list immediately.</li>
+              <li>Select a drone to inspect its resolved state history and conflict ledger.</li>
+              <li>Click <strong className="text-foreground">Edit Rules</strong> in the top bar to adjust the conflict resolution ruleset.</li>
+            </ol>
+          </div>
+        </div>
+
+        <button
+          onClick={onDismiss}
+          className="mt-5 w-full py-2 text-xs font-semibold text-secondary-foreground bg-secondary hover:bg-secondary/80 border border-border rounded-md transition-colors"
+        >
+          Got it — open the dashboard
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Inline metrics strip (no separate component needed) ───────────────────────
+function MetricsStrip() {
+  const drones = useDashboardStore((s) => s.drones);
+  const totalEvents = drones.reduce((sum, d) => sum + d.event_count, 0);
+  const totalUnresolved = drones.reduce((sum, d) => sum + d.unresolved_count, 0);
+
+  return (
+    <div className="flex items-center gap-4 text-[10px] text-muted-foreground shrink-0">
+      <span className="flex items-center gap-1">
+        <Radio size={10} />
+        <AnimatedNumber value={drones.length} /> drones
+      </span>
+      <span className="flex items-center gap-1">
+        <Crosshair size={10} />
+        <AnimatedNumber value={totalEvents} /> events
+      </span>
+      {totalUnresolved > 0 && (
+        <span className="flex items-center gap-1 text-amber-600 font-semibold">
+          <AlertTriangle size={10} />
+          <AnimatedNumber value={totalUnresolved} /> conflicts
+        </span>
+      )}
+      <span className="flex items-center gap-1 ml-1">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        live
+      </span>
+    </div>
+  );
+}
+
+// ── Main Dashboard ─────────────────────────────────────────────────────────────
 export default function Dashboard() {
   const {
     selectedDroneId,
@@ -20,9 +110,23 @@ export default function Dashboard() {
     setLastFetchedAt,
     activeTab,
     setActiveTab,
-    mapVisible,
-    setMapVisible,
+    view,
+    setView,
   } = useDashboardStore();
+
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [fixtureOpen, setFixtureOpen] = useState(false);
+
+  // Show tutorial on first visit
+  useEffect(() => {
+    const seen = localStorage.getItem("sfcr_tutorial_seen");
+    if (!seen) setShowTutorial(true);
+  }, []);
+
+  const dismissTutorial = () => {
+    localStorage.setItem("sfcr_tutorial_seen", "1");
+    setShowTutorial(false);
+  };
 
   const fetchDrones = useCallback(async () => {
     try {
@@ -41,137 +145,190 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, [fetchDrones]);
 
-  return (
-    <div className="flex flex-col h-full w-full">
-      {/* Header */}
-      <header className="shrink-0 bg-black/30 backdrop-blur-xl border-b border-white/8 z-50">
-        <div className="max-w-screen-2xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <Crosshair size={22} />
-            </div>
-            <div>
-              <h1 className="text-2xl font-serif text-white leading-none tracking-tight">
-                Sensor Fusion Engine
-              </h1>
-              <p className="text-xs font-medium text-zinc-500 uppercase tracking-widest mt-1">
-                Deterministic Conflict Resolution
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <RuleEditor />
-          </div>
-        </div>
-      </header>
+  // ── Edit Rules full-screen view ──────────────────────────────────────────
+  if (view === "edit_rules") {
+    return (
+      <div className="flex flex-col h-full w-full bg-background text-foreground">
+        <RuleEditor />
+      </div>
+    );
+  }
 
-      <MetricsBar />
+  // ── Main 3-column dashboard ──────────────────────────────────────────────
+  return (
+    <div className="flex flex-col h-full w-full bg-background text-foreground overflow-hidden">
+      {showTutorial && <Tutorial onDismiss={dismissTutorial} />}
+
+      {/* ── Top bar: app identity + metrics + actions ── */}
+      <div className="shrink-0 flex items-center gap-4 px-4 py-2 border-b border-border bg-card">
+        {/* Brand */}
+        <div className="flex items-center gap-2 shrink-0">
+          <Crosshair size={14} className="text-foreground" />
+          <span className="text-xs font-semibold text-foreground tracking-tight">Sensor Fusion</span>
+          <span className="hidden sm:inline text-[10px] text-muted-foreground uppercase tracking-widest">/ Conflict Resolver</span>
+        </div>
+
+        <div className="w-px h-4 bg-border shrink-0" />
+
+        {/* Inline metrics */}
+        <MetricsStrip />
+
+        {/* Right actions */}
+        <div className="ml-auto flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => setShowTutorial(true)}
+            className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+            aria-label="Show tutorial"
+            title="Show tutorial"
+          >
+            <Info size={14} />
+          </button>
+          <button
+            onClick={() => setView("edit_rules")}
+            className="px-2.5 py-1.5 text-[11px] font-semibold rounded-md border border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-colors flex items-center gap-1.5"
+          >
+            <Settings size={12} /> Edit Rules
+          </button>
+        </div>
+      </div>
+
+      {/* ── Alert banner ── */}
       <AlertBanner onViewDrone={(id) => { selectDrone(id); setActiveTab("conflicts"); }} />
 
-      <div className="flex-1 flex overflow-hidden max-w-screen-2xl mx-auto w-full border-x border-white/6">
-        {/* Sidebar */}
-        <aside className="w-80 shrink-0 border-r border-white/6 flex flex-col bg-black/10 min-h-0">
-          <div className="flex-1 overflow-y-auto p-4 border-b border-white/6">
-            <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-4">
+      {/* ── 3-column layout ── */}
+      {/*
+        Desktop: left(240px) | center(flex-1) | right(260px)
+        Mobile:  stacks vertically
+      */}
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
+
+        {/* ── LEFT: Fleet list + Simulation Data ── */}
+        <aside className="
+          w-full lg:w-[240px] shrink-0
+          flex flex-col
+          border-b lg:border-b-0 lg:border-r border-border
+          bg-card
+          max-h-[40vh] lg:max-h-none
+          overflow-hidden
+        ">
+          {/* Fleet list */}
+          <div className="flex-1 overflow-y-auto min-h-0 p-3">
+            <div className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
               Active Fleet
-            </h2>
-            <DroneList
-              selectedDroneId={selectedDroneId}
-              onSelect={selectDrone}
-            />
-          </div>
-          <div className="p-4 shrink-0 bg-black/20">
-            <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-3">
-              Simulation Data
-            </h2>
-            <FixtureLoader onLoad={() => fetchDrones()} />
-          </div>
-        </aside>
-
-        {/* Main Area */}
-        <main className="flex-1 flex flex-col min-w-0 bg-black/20">
-          {/* Map Section */}
-          <div className={`shrink-0 border-b border-white/6 transition-all duration-300 ${mapVisible ? "h-[45%]" : "h-0 border-none overflow-hidden"}`}>
-            <DroneMap selectedDroneId={selectedDroneId} onSelectDrone={selectDrone} />
-          </div>
-
-          {/* Details Section */}
-          <div className="flex-1 flex flex-col min-h-0 p-6">
-            <div className="flex items-center justify-between mb-6 shrink-0">
-              {selectedDroneId ? (
-                <div>
-                  <h2 className="text-2xl font-serif text-white tracking-tight">{selectedDroneId}</h2>
-                  <p className="text-sm font-medium text-zinc-500">Historical state & decisions</p>
-                </div>
-              ) : (
-                <div>
-                  <h2 className="text-xl font-serif text-zinc-400">Drone Telemetry</h2>
-                  <p className="text-sm font-medium text-zinc-600">Select an entity to view history</p>
-                </div>
-              )}
-
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setMapVisible(!mapVisible)}
-                  className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-zinc-300 border border-white/10 transition-colors flex items-center gap-2"
-                >
-                  {mapVisible ? <Compass size={14} /> : <MapIcon size={14} />}
-                  {mapVisible ? "Hide Map" : "Show Map"}
-                </button>
-                {selectedDroneId && (
-                  <a
-                    href={`/api/drones/${selectedDroneId}/audit`}
-                    download
-                    className="px-4 py-1.5 rounded-lg bg-indigo-600/10 hover:bg-indigo-600/20 text-xs font-semibold text-indigo-300 border border-indigo-500/20 transition-all flex items-center gap-2"
-                  >
-                    <Download size={14} />
-                    Export Audit
-                  </a>
-                )}
-              </div>
             </div>
+            <DroneList selectedDroneId={selectedDroneId} onSelect={selectDrone} />
+          </div>
 
-            {selectedDroneId ? (
-              <div className="flex-1 flex flex-col min-h-0">
-                <div className="flex gap-2 mb-4 shrink-0">
-                  <button
-                    onClick={() => setActiveTab("timeline")}
-                    className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-2
-                      ${activeTab === "timeline"
-                        ? "bg-white/10 text-white shadow-sm"
-                        : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
-                      }`}
-                  >
-                    <List size={14} /> State Timeline
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("conflicts")}
-                    className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all flex items-center gap-2
-                      ${activeTab === "conflicts"
-                        ? "bg-white/10 text-white shadow-sm"
-                        : "text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
-                      }`}
-                  >
-                    <Zap size={14} /> Conflict Ledger
-                  </button>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  {activeTab === "timeline" ? (
-                    <DroneTimeline droneId={selectedDroneId} />
-                  ) : (
-                    <ConflictViewer droneId={selectedDroneId} />
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-center border-2 border-dashed border-white/5 rounded-2xl">
-                <Crosshair size={48} className="text-zinc-800 mb-4" />
-                <p className="text-sm font-medium text-zinc-500">Awaiting selection</p>
+          {/* Simulation Data — collapsible */}
+          <div className="shrink-0 border-t border-border">
+            <button
+              onClick={() => setFixtureOpen((v) => !v)}
+              className="w-full flex items-center justify-between px-3 py-2 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-secondary/40 transition-colors"
+            >
+              <span>Simulation Data</span>
+              {fixtureOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
+            </button>
+            {fixtureOpen && (
+              <div className="px-3 pb-3 bg-secondary/20 overflow-y-auto max-h-[200px]">
+                <FixtureLoader onLoad={() => fetchDrones()} />
               </div>
             )}
           </div>
+        </aside>
+
+        {/* ── CENTER: Map (squarish, dominant) ── */}
+        <main className="
+          flex-1
+          flex items-center justify-center
+          bg-secondary/10
+          overflow-hidden
+          min-h-[40vh] lg:min-h-0
+        ">
+          {/* Squarish map container — aspect-square bounded by available space */}
+          <div className="
+            w-full h-full
+            lg:max-w-none lg:max-h-none
+            relative
+          ">
+            <DroneMap selectedDroneId={selectedDroneId} onSelectDrone={(id) => { selectDrone(id); }} />
+          </div>
         </main>
+
+        {/* ── RIGHT: Telemetry detail panel ── */}
+        <aside className="
+          w-full lg:w-[260px] shrink-0
+          flex flex-col
+          border-t lg:border-t-0 lg:border-l border-border
+          bg-card
+          max-h-[45vh] lg:max-h-none
+          overflow-hidden
+        ">
+          {/* Panel header */}
+          <div className="shrink-0 flex items-center justify-between px-3 py-2 border-b border-border">
+            {selectedDroneId ? (
+              <div className="flex items-center gap-2 min-w-0">
+                <Crosshair size={12} className="text-muted-foreground shrink-0" />
+                <span className="text-xs font-mono font-semibold text-foreground truncate">{selectedDroneId}</span>
+              </div>
+            ) : (
+              <span className="text-[10px] text-muted-foreground font-medium">Select a drone</span>
+            )}
+            {selectedDroneId && (
+              <a
+                href={`/api/drones/${selectedDroneId}/audit`}
+                download
+                title="Export audit trail"
+                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              >
+                <Download size={12} />
+              </a>
+            )}
+          </div>
+
+          {/* Tab bar */}
+          {selectedDroneId && (
+            <div className="shrink-0 flex border-b border-border">
+              <button
+        onClick={() => setActiveTab("timeline")}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
+                  activeTab === "timeline"
+                    ? "border-foreground text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <List size={11} /> Timeline
+              </button>
+              <button
+                onClick={() => setActiveTab("conflicts")}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
+                  activeTab === "conflicts"
+                    ? "border-foreground text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Zap size={11} /> Conflicts
+              </button>
+            </div>
+          )}
+
+          {/* Panel body */}
+          <div className="flex-1 overflow-y-auto min-h-0 p-3">
+            {selectedDroneId ? (
+              activeTab === "timeline" ? (
+                <DroneTimeline droneId={selectedDroneId} />
+              ) : (
+                <ConflictViewer droneId={selectedDroneId} />
+              )
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-center gap-2 py-8">
+                <Crosshair size={20} className="text-muted-foreground opacity-40" />
+                <p className="text-[10px] text-muted-foreground">
+                  Select a drone from the fleet<br />or click a marker on the map
+                </p>
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </div>
   );
