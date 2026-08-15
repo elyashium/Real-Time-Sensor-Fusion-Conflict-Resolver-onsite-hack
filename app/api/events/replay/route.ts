@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
 
   // Reconcile all affected drones
   const reconciliationErrors: string[] = [];
-  for (const droneId of affectedDrones) {
+  for (const droneId of Array.from(affectedDrones)) {
     try {
       await reconcileDrone(droneId, rules);
     } catch (err) {

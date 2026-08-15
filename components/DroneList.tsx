@@ -1,20 +1,7 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useDashboardStore } from "@/lib/store/dashboard";
 import { AnimatedNumber, StatusBadge, SourceBadge } from "@/components/ui/badges";
-
-interface Drone {
-  drone_id: string;
-  latest_lat: number | null;
-  latest_lon: number | null;
-  latest_alt: number | null;
-  latest_confidence: number | null;
-  latest_source: string | null;
-  latest_status: "resolved" | "unresolved" | "stale";
-  latest_timestamp: string | null;
-  event_count: number;
-  unresolved_count: number;
-}
 
 interface DroneListProps {
   selectedDroneId: string | null;
@@ -22,28 +9,11 @@ interface DroneListProps {
 }
 
 export default function DroneList({ selectedDroneId, onSelect }: DroneListProps) {
-  const [drones, setDrones] = useState<Drone[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Reads from Zustand store — the page component owns polling and updates the store
+  const drones = useDashboardStore((s) => s.drones);
+  const lastFetchedAt = useDashboardStore((s) => s.lastFetchedAt);
 
-  const fetchDrones = useCallback(async () => {
-    try {
-      const res = await fetch("/api/drones");
-      const json = await res.json();
-      setDrones(json.drones ?? []);
-    } catch {
-      // ignore
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchDrones();
-    const interval = setInterval(fetchDrones, 5000);
-    return () => clearInterval(interval);
-  }, [fetchDrones]);
-
-  if (loading) {
+  if (!lastFetchedAt) {
     return (
       <div className="space-y-3">
         {[1, 2, 3].map((i) => (

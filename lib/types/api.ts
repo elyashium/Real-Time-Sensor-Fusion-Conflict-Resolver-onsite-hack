@@ -1,4 +1,4 @@
-import type { Database } from "@/lib/types/database";
+// Shared types for API responses.
 
 /**
  * Shared types for API responses.

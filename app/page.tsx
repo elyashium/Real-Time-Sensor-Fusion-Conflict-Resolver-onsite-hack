@@ -1,23 +1,40 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useEffect, useCallback } from "react";
+import { useDashboardStore } from "@/lib/store/dashboard";
 import DroneList from "@/components/DroneList";
 import DroneTimeline from "@/components/DroneTimeline";
 import ConflictViewer from "@/components/ConflictViewer";
 import FixtureLoader from "@/components/FixtureLoader";
-import { AnimatedNumber } from "@/components/ui/badges";
 
 type Tab = "timeline" | "conflicts";
+import { useState } from "react";
 
 export default function Dashboard() {
-  const [selectedDroneId, setSelectedDroneId] = useState<string | null>(null);
+  const { selectedDroneId, selectDrone, setDrones, setLastFetchedAt } = useDashboardStore();
   const [tab, setTab] = useState<Tab>("timeline");
-  const [droneListKey, setDroneListKey] = useState(0);
+
+  const fetchDrones = useCallback(async () => {
+    try {
+      const res = await fetch("/api/drones");
+      const json = await res.json();
+      setDrones(json.drones ?? []);
+      setLastFetchedAt(Date.now());
+    } catch {
+      // ignore transient errors
+    }
+  }, [setDrones, setLastFetchedAt]);
+
+  // Poll every 2 seconds as per spec §9
+  useEffect(() => {
+    fetchDrones();
+    const interval = setInterval(fetchDrones, 2000);
+    return () => clearInterval(interval);
+  }, [fetchDrones]);
 
   const handleFixtureLoad = useCallback(() => {
-    // Re-render drone list after fixture load
-    setDroneListKey((k) => k + 1);
-  }, []);
+    fetchDrones();
+  }, [fetchDrones]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-zinc-100 flex flex-col">
@@ -37,7 +54,7 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs text-zinc-400">Live</span>
+            <span className="text-xs text-zinc-400">Live · polling 2s</span>
           </div>
         </div>
       </header>
@@ -51,9 +68,8 @@ export default function Dashboard() {
               Active Drones
             </h2>
             <DroneList
-              key={droneListKey}
               selectedDroneId={selectedDroneId}
-              onSelect={setSelectedDroneId}
+              onSelect={selectDrone}
             />
           </div>
 
