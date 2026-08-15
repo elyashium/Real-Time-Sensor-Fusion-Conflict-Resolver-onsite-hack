@@ -17,11 +17,24 @@ export async function GET() {
     return NextResponse.json({ drones: [] });
   }
 
-  // Group by drone_id and take the latest version of each
+  // Group by drone_id and take the latest version, but also find the most recent valid position
   const droneMap = new Map<string, typeof versions[0]>();
+  const lastKnownPosMap = new Map<string, { lat: number; lon: number; alt: number | null; conf: number | null; source: string | null }>();
+
   for (const v of versions) {
+    // Save the absolute latest version for status
     if (!droneMap.has(v.drone_id)) {
       droneMap.set(v.drone_id, v);
+    }
+    // Save the most recent valid position
+    if (v.lat !== null && v.lon !== null && !lastKnownPosMap.has(v.drone_id)) {
+      lastKnownPosMap.set(v.drone_id, {
+        lat: v.lat,
+        lon: v.lon,
+        alt: v.alt,
+        conf: v.confidence,
+        source: v.source_of_truth
+      });
     }
   }
 
@@ -49,18 +62,21 @@ export async function GET() {
     }
   }
 
-  const drones = Array.from(droneMap.entries()).map(([drone_id, v]) => ({
-    drone_id,
-    latest_lat: v.lat,
-    latest_lon: v.lon,
-    latest_alt: v.alt,
-    latest_confidence: v.confidence,
-    latest_source: v.source_of_truth,
-    latest_status: v.status,
-    latest_timestamp: v.effective_timestamp,
-    event_count: eventCountMap.get(drone_id) ?? 0,
-    unresolved_count: unresolvedMap.get(drone_id) ?? 0,
-  }));
+  const drones = Array.from(droneMap.entries()).map(([drone_id, v]) => {
+    const pos = lastKnownPosMap.get(drone_id);
+    return {
+      drone_id,
+      latest_lat: pos?.lat ?? null,
+      latest_lon: pos?.lon ?? null,
+      latest_alt: pos?.alt ?? null,
+      latest_confidence: pos?.conf ?? null,
+      latest_source: pos?.source ?? null,
+      latest_status: v.status,
+      latest_timestamp: v.effective_timestamp,
+      event_count: eventCountMap.get(drone_id) ?? 0,
+      unresolved_count: unresolvedMap.get(drone_id) ?? 0,
+    };
+  });
 
   return NextResponse.json({ drones });
 }
