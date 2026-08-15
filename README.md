@@ -5,7 +5,25 @@ A real-time sensor fusion conflict resolver for autonomous drone operations. Thi
 
 This architecture acts as an immutable event-sourced ledger, natively satisfying all requirements for determinism, idempotency, and replayability.
 
----
+
+
+<img width="2720" height="2160" alt="sensor_fusion_architecture" src="https://github.com/user-attachments/assets/1f0f6768-f01f-4067-b02d-14e11f81198f" />
+
+<img width="525" height="583" alt="image" src="https://github.com/user-attachments/assets/2412c752-c7fc-4dcc-8d70-f1d226e5df49" />
+
+
+telementary events 
+<img width="1620" height="706" alt="image" src="https://github.com/user-attachments/assets/5cd588a7-7780-4dc8-b4ba-ff5092663b53" />
+
+drone state versions
+<img width="1637" height="706" alt="image" src="https://github.com/user-attachments/assets/73b1f830-c6d8-42b3-be17-c7b86b8d99bc" />
+
+conflict detection 
+<img width="1626" height="689" alt="image" src="https://github.com/user-attachments/assets/8a737df9-d909-4bc1-a2f3-f0bceafdf591" />
+
+
+
+
 
 ##  Codebase Architecture
 
