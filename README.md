@@ -7,7 +7,7 @@ This architecture acts as an immutable event-sourced ledger, natively satisfying
 
 ---
 
-## 🏗️ Codebase Architecture
+##  Codebase Architecture
 
 The application is built on a modern, serverless stack designed for high-throughput event ingestion and strict data consistency.
 
@@ -31,7 +31,7 @@ A real-time, responsive C2 (Command & Control) dashboard:
 
 ---
 
-## 🚁 Understanding the Drone Data (Simulation Fixtures)
+##  Understanding the Drone Data (Simulation Fixtures)
 
 For hackathon judges: because we don't have live autonomous drones flying around during the demo, the system is powered by **Simulation Fixtures**. These are highly specific JSON payloads designed to stress-test the conflict resolution engine. 
 
