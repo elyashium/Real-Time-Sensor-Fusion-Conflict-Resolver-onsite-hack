@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/db/supabase-admin";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   // Get all drones with their latest state version
   const { data: versions, error: vError } = await supabaseAdmin
