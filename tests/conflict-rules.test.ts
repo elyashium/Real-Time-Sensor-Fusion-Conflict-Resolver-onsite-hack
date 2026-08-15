@@ -11,7 +11,7 @@ function mockRequest(body: any) {
 }
 
 describe("Conflict Rules via API", () => {
-  const testDrone = "test-drone-conflict-1";
+  const testDrone = `test-drone-conflict-${Date.now()}`;
   
   beforeAll(async () => {
     await supabaseAdmin.from("telemetry_events").delete().eq("drone_id", testDrone);
@@ -40,24 +40,26 @@ describe("Conflict Rules via API", () => {
   });
   
   it("handles low confidence overall unresolved", async () => {
-    const testDrone2 = "test-drone-conflict-2";
+    // Use IMU + Video — NOT GPS+LiDAR, which has its own pair rule that fires first.
+    // The low-confidence rule (allConfidenceBelow: 0.6) must be the only applicable rule.
+    const testDrone2 = `test-drone-conflict-low-${Date.now()}`;
     await supabaseAdmin.from("telemetry_events").delete().eq("drone_id", testDrone2);
 
-    const evtGPS = {
-      drone_id: testDrone2, source: "GPS", timestamp: "2026-06-01T10:00:00.000Z",
-      position: { lat: 37, lon: -122, alt: 100 }, confidence: 0.5, // Low
+    const evtIMU = {
+      drone_id: testDrone2, source: "IMU", timestamp: "2026-06-01T10:00:00.000Z",
+      position: { lat: 37, lon: -122, alt: 100 }, confidence: 0.5, // below 0.6
     };
-    const evtLiDAR = {
-      drone_id: testDrone2, source: "LiDAR", timestamp: "2026-06-01T10:00:00.000Z",
+    const evtVideo = {
+      drone_id: testDrone2, source: "Video", timestamp: "2026-06-01T10:00:00.000Z",
       position: { lat: 38, lon: -122, alt: 100 }, confidence: 0.5,
     };
 
-    await POST(mockRequest(evtLiDAR));
-    const res = await POST(mockRequest(evtGPS)); 
+    await POST(mockRequest(evtIMU));
+    const res = await POST(mockRequest(evtVideo));
     expect(res.status).toBe(200);
     const json = await res.json();
     
-    // Unresolved
+    // Should be unresolved because both confidences are below 0.6
     expect(json.resultingState.source_of_truth).toBeNull();
     expect(json.resultingState.status).toBe("unresolved");
   });

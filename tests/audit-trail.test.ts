@@ -11,9 +11,10 @@ function mockRequest(body: any) {
 }
 
 describe("Audit Trail API Test", () => {
-  const testDrone = "test-drone-audit-1";
+  const testDrone = `test-drone-audit-${Date.now()}`;
   
   beforeAll(async () => {
+    // Delete might fail due to RLS, so unique ID is used instead.
     await supabaseAdmin.from("telemetry_events").delete().eq("drone_id", testDrone);
   });
 

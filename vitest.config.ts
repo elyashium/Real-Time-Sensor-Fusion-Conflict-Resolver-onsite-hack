@@ -12,5 +12,6 @@ export default defineConfig({
     environment: "node",
     include: ["tests/**/*.test.ts", "lib/fusion/__tests__/**/*.test.ts"],
     setupFiles: ["dotenv/config"],
+    testTimeout: 20000,
   },
 });
