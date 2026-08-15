@@ -25,24 +25,43 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [overriding, setOverriding] = useState<string | null>(null);
+
+  async function fetchConflicts() {
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/drones/${droneId}`);
+      const data = await res.json();
+      const results = (data.decisions ?? []).slice().reverse();
+      setDecisions(results);
+      trackEvent("conflict_viewed", { drone: droneId, conflictCount: results.length });
+    } catch (e) {
+      console.error("Failed to fetch conflicts", e);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function fetchConflicts() {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/drones/${droneId}`);
-        const data = await res.json();
-        const results = (data.decisions ?? []).slice().reverse();
-        setDecisions(results);
-        trackEvent("conflict_viewed", { drone: droneId, conflictCount: results.length });
-      } catch (e) {
-        console.error("Failed to fetch conflicts", e);
-      } finally {
-        setLoading(false);
-      }
-    }
     fetchConflicts();
   }, [droneId]);
+
+  async function handleOverride(decision_timestamp: string, selected_source: string) {
+    try {
+      setOverriding(decision_timestamp);
+      await fetch('/api/overrides', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ drone_id: droneId, decision_timestamp, selected_source }),
+      });
+      // Refresh to show the newly resolved state
+      await fetchConflicts();
+    } catch (e) {
+      console.error("Failed to override", e);
+    } finally {
+      setOverriding(null);
+    }
+  }
 
   if (loading) return (
     <div className="space-y-2">
@@ -108,6 +127,27 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
                     ))}
                   </div>
                 </div>
+
+                {isConflict && (
+                  <div className="pt-2 mt-2 border-t border-border">
+                    <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Human-in-the-Loop Override</span>
+                    <div className="flex gap-2 mt-1.5">
+                      {["GPS", "LiDAR", "IMU", "Video"].map((src) => (
+                        <button
+                          key={src}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOverride(d.decision_timestamp, src);
+                          }}
+                          disabled={overriding === d.decision_timestamp}
+                          className="text-[10px] px-2 py-1 rounded bg-background border border-border hover:bg-muted text-foreground transition-colors disabled:opacity-50"
+                        >
+                          Force Trust {src}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>

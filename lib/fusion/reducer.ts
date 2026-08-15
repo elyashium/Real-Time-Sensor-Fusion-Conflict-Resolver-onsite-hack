@@ -42,6 +42,7 @@ export interface ReducerInput {
   events: FusionEvent[];
   rules: RuleConfig[];
   thresholds?: ThresholdConfig;
+  overrides?: Record<string, string>; // Record<decision_timestamp, selected_source>
 }
 
 /**
@@ -76,7 +77,26 @@ export function foldEvents(input: ReducerInput): ReducerOutput {
     let decisionId: string | null = null;
     let decision: ConflictDecision | null = null;
 
-    if (isConflict) {
+    const bucketTimestamp = bucket[0].event_timestamp;
+    const manualOverrideSource = input.overrides?.[bucketTimestamp];
+
+    if (manualOverrideSource) {
+      decisionId = generateDecisionId(bucket);
+      const chosenEvent = bucket.find((e) => e.source === manualOverrideSource) || bucket[0];
+      decision = {
+        drone_id: bucket[0].drone_id,
+        decision_timestamp: bucketTimestamp,
+        input_event_ids: bucket.map((e) => e.id),
+        rule_applied: `Human Manual Override: forced trust in ${manualOverrideSource}`,
+        rule_id: "override",
+        output_lat: chosenEvent.lat,
+        output_lon: chosenEvent.lon,
+        output_alt: chosenEvent.alt,
+        output_status: "resolved",
+        source_of_truth: manualOverrideSource as TelemetrySource,
+      };
+      decisions.push(decision);
+    } else if (isConflict) {
       decisionId = generateDecisionId(bucket);
       decision = resolveBucket(bucket, rules, thresholds, decisionId);
       decisions.push(decision);

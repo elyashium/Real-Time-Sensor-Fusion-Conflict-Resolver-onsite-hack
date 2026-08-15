@@ -38,6 +38,19 @@ export async function reconcileDrone(
     return { state_versions: [], decisions: [] };
   }
 
+  // 1.5 Fetch manual overrides for this drone
+  const { data: dbOverrides } = await supabaseAdmin
+    .from("manual_overrides")
+    .select("decision_timestamp, selected_source")
+    .eq("drone_id", droneId);
+
+  const overrides: Record<string, string> = {};
+  if (dbOverrides) {
+    for (const row of dbOverrides) {
+      overrides[row.decision_timestamp] = row.selected_source;
+    }
+  }
+
   // 2. Map to FusionEvent shape and fold
   const fusionEvents: FusionEvent[] = dbEvents.map((e) => ({
     id: e.id,
@@ -50,7 +63,7 @@ export async function reconcileDrone(
     confidence: e.confidence,
   }));
 
-  const foldResult = foldEvents({ events: fusionEvents, rules });
+  const foldResult = foldEvents({ events: fusionEvents, rules, overrides });
 
   // 3. Delete old derived rows for this drone
   await supabaseAdmin
