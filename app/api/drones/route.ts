@@ -62,6 +62,31 @@ export async function GET() {
     }
   }
 
+  // For drones that were unresolved from the very beginning, they have no valid lat/lon in drone_state_versions.
+  // We need a fallback coordinate so they can still render as unresolved markers on the map.
+  const dronesMissingPos = Array.from(droneMap.keys()).filter((id) => !lastKnownPosMap.has(id));
+  if (dronesMissingPos.length > 0) {
+    const { data: fallbackEvents } = await supabaseAdmin
+      .from("telemetry_events")
+      .select("drone_id, lat, lon")
+      .in("drone_id", dronesMissingPos)
+      .order("event_timestamp", { ascending: false });
+      
+    if (fallbackEvents) {
+      for (const e of fallbackEvents) {
+        if (!lastKnownPosMap.has(e.drone_id) && e.lat != null && e.lon != null) {
+          lastKnownPosMap.set(e.drone_id, {
+            lat: e.lat,
+            lon: e.lon,
+            alt: null,
+            conf: null,
+            source: "Fallback (Raw)",
+          });
+        }
+      }
+    }
+  }
+
   const drones = Array.from(droneMap.entries()).map(([drone_id, v]) => {
     const pos = lastKnownPosMap.get(drone_id);
     return {
