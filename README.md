@@ -4,6 +4,9 @@ A hackathon project that ingests telemetry from multiple drone sensors (GPS, IMU
 
 ---
 
+<img width="2720" height="2160" alt="sensor_fusion_architecture" src="https://github.com/user-attachments/assets/3c3c2684-6f45-4614-8f17-5d7a958aad50" />
+
+
 ## Setup
 
 ### 1. Prerequisites
