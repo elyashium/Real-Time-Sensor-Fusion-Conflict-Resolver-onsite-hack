@@ -9,13 +9,20 @@ import path from "node:path";
  * Determinism Acceptance Test
  *
  * Goal: prove that foldEvents + reconcileDrone produce the same derived state
- * regardless of the submission order of events.
+ * regardless of the order that FIXTURE FILES are submitted.
  *
  * Strategy:
- *   Run A: replay all fixture events (in file order) against drone IDs suffixed "-a"
- *   Run B: replay ALL the same events (in REVERSED order) against drone IDs suffixed "-b"
- *   Assert: drone_state_versions and conflict_decisions are deep-equal between A and B
- *           (after normalizing drone_id to strip the suffix)
+ *   Run A: replay all fixture events grouped by file in file-name order,
+ *          using drone IDs suffixed "-a"
+ *   Run B: replay the SAME events grouped by file in REVERSED file-name order,
+ *          using drone IDs suffixed "-b"
+ *
+ *   Within each fixture file, events keep their original order (preserving the
+ *   fixture's intended deduplication behavior — e.g., fixture 02 wants event 1
+ *   to win over event 3 regardless of which fixture file arrives first).
+ *
+ * Assert: drone_state_versions and conflict_decisions for drone IDs are deep-equal
+ *         between run A and run B (after normalizing drone_id to strip suffixes).
  *
  * We use distinct drone IDs per run so the append-only telemetry_events table
  * (which has no DELETE policy by design) never causes false duplicates.
@@ -44,15 +51,15 @@ function mockReplayRequest(events: any[]) {
   });
 }
 
-function loadAllFixtures(): any[] {
+interface Fixture { file: string; events: any[] }
+
+function loadFixtureFiles(): Fixture[] {
   const fixturesDir = path.join(__dirname, "..", "fixtures");
-  const files = readdirSync(fixturesDir).filter((f) => f.endsWith(".json"));
-  let all: any[] = [];
-  for (const file of files) {
+  const files = readdirSync(fixturesDir).filter((f) => f.endsWith(".json")).sort();
+  return files.map((file) => {
     const fixture = JSON.parse(readFileSync(path.join(fixturesDir, file), "utf-8"));
-    all = all.concat(fixture.events);
-  }
-  return all;
+    return { file, events: fixture.events };
+  });
 }
 
 async function snapshotState(runLabel: "a" | "b") {
@@ -76,35 +83,37 @@ async function snapshotState(runLabel: "a" | "b") {
   if (de) throw new Error(`decision snapshot error: ${de.message}`);
 
   // Normalize drone_id back to canonical form for comparison
-  const normalize = (rows: any[], label: string) =>
+  const suffix = `-${RUN_STAMP}-${runLabel}`;
+  const normalize = (rows: any[]) =>
     (rows ?? []).map((r) => ({
       ...r,
-      drone_id: r.drone_id.replace(`-${RUN_STAMP}-${label}`, ""),
+      drone_id: r.drone_id.replace(`det-`, "").replace(suffix, ""),
     }));
 
   return {
-    states: normalize(states ?? [], runLabel),
-    decisions: normalize(decisions ?? [], runLabel),
+    states: normalize(states ?? []),
+    decisions: normalize(decisions ?? []),
   };
 }
 
 describe("Determinism Acceptance Test", () => {
-  let rawEvents: any[];
+  let fixtures: Fixture[];
 
   beforeAll(() => {
-    rawEvents = loadAllFixtures();
+    fixtures = loadFixtureFiles();
   });
 
-  it("replaying all fixtures in two different orders yields identical derived state", async () => {
-    // Run A: events in file order, drone IDs suffixed "-a"
-    const eventsA = remapEvents(rawEvents, "a");
+  it("replaying fixture files in two different ORDERS yields identical derived state", async () => {
+    // Run A: fixture files in alphabetical order (01→07)
+    const eventsA = fixtures.flatMap((f) => remapEvents(f.events, "a"));
     const resA = await POST(mockReplayRequest(eventsA));
     expect(resA.status).toBe(200);
     const jsonA = await resA.json();
     expect(jsonA.accepted).toBeGreaterThan(0);
 
-    // Run B: same events in reverse order, drone IDs suffixed "-b"
-    const eventsB = remapEvents([...rawEvents].reverse(), "b");
+    // Run B: fixture files in REVERSE alphabetical order (07→01)
+    // Within each file, events stay in original order (preserving fixture semantics)
+    const eventsB = [...fixtures].reverse().flatMap((f) => remapEvents(f.events, "b"));
     const resB = await POST(mockReplayRequest(eventsB));
     expect(resB.status).toBe(200);
     const jsonB = await resB.json();
