@@ -8,7 +8,7 @@
       "drone_id": "drone-charlie",
       "timestamp": "2026-06-01T10:05:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.75000, "lon": -122.43000, "alt": 150.0 },
+      "position": { "lat": 28.5950, "lon": 77.1950, "alt": 150.0 },
       "confidence": 0.90
     },
     {
@@ -16,7 +16,7 @@
       "drone_id": "drone-charlie",
       "timestamp": "2026-06-01T10:10:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 },
+      "position": { "lat": 28.5955, "lon": 77.1956, "alt": 152.0 },
       "confidence": 0.90
     },
     {
@@ -25,7 +25,7 @@
       "drone_id": "drone-charlie",
       "timestamp": "2026-06-01T09:55:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.74950, "lon": -122.42940, "alt": 148.0 },
+      "position": { "lat": 28.5945, "lon": 77.1944, "alt": 148.0 },
       "confidence": 0.85
     }
   ],
@@ -33,11 +33,11 @@
     {
       "afterAllSubmitted": true,
       "reconstructedTimelineOrder": [
-        { "timestamp": "2026-06-01T09:55:00.000Z", "position": { "lat": 37.74950, "lon": -122.42940, "alt": 148.0 } },
-        { "timestamp": "2026-06-01T10:05:00.000Z", "position": { "lat": 37.75000, "lon": -122.43000, "alt": 150.0 } },
-        { "timestamp": "2026-06-01T10:10:00.000Z", "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 } }
+        { "timestamp": "2026-06-01T09:55:00.000Z", "position": { "lat": 28.5945, "lon": 77.1944, "alt": 148.0 } },
+        { "timestamp": "2026-06-01T10:05:00.000Z", "position": { "lat": 28.5950, "lon": 77.1950, "alt": 150.0 } },
+        { "timestamp": "2026-06-01T10:10:00.000Z", "position": { "lat": 28.5955, "lon": 77.1956, "alt": 152.0 } }
       ],
-      "latestState": { "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 }, "timestamp": "2026-06-01T10:10:00.000Z" },
+      "latestState": { "position": { "lat": 28.5955, "lon": 77.1956, "alt": 152.0 }, "timestamp": "2026-06-01T10:10:00.000Z" },
       "note": "Latest state is unaffected (no conflict at any timestamp — single source throughout), but the audit trail / drone_state_versions history must show the late event inserted at 09:55, not appended after 10:10."
     }
   ]

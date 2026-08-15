@@ -1,27 +1,27 @@
 {
   "fixtureId": "07-state-reverts-to-previous-position",
-  "description": "drone-echo flies from A to B and then literally back to A. This is a legitimate flight path (e.g. a return leg), not a data error — the resolver must not flag it, dedupe it, or treat the third event as conflicting with the first just because the position matches. Distinct from fixture 04, which is about late arrival/insertion order, not spatial reversal.",
+  "description": "drone-echo flies from A to B and then literally back to A. This is a legitimate flight path (e.g. a return leg), not a data error — the resolver must not flag it, dedupe it, or treat the third event as conflicting with the first just because the position matches.",
   "maps_to_test": "tests/ordering.test.ts",
   "events": [
     {
       "drone_id": "drone-echo",
       "timestamp": "2026-06-01T14:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.79000, "lon": -122.41000, "alt": 90.0 },
+      "position": { "lat": 28.6250, "lon": 77.2150, "alt": 90.0 },
       "confidence": 0.90
     },
     {
       "drone_id": "drone-echo",
       "timestamp": "2026-06-01T14:05:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.79300, "lon": -122.41300, "alt": 95.0 },
+      "position": { "lat": 28.6280, "lon": 77.2180, "alt": 95.0 },
       "confidence": 0.90
     },
     {
       "drone_id": "drone-echo",
       "timestamp": "2026-06-01T14:10:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.79000, "lon": -122.41000, "alt": 90.0 },
+      "position": { "lat": 28.6250, "lon": 77.2150, "alt": 90.0 },
       "confidence": 0.90
     }
   ],
@@ -29,11 +29,11 @@
     {
       "afterAllSubmitted": true,
       "reconstructedTimelineOrder": [
-        { "timestamp": "2026-06-01T14:00:00.000Z", "position": { "lat": 37.79000, "lon": -122.41000, "alt": 90.0 } },
-        { "timestamp": "2026-06-01T14:05:00.000Z", "position": { "lat": 37.79300, "lon": -122.41300, "alt": 95.0 } },
-        { "timestamp": "2026-06-01T14:10:00.000Z", "position": { "lat": 37.79000, "lon": -122.41000, "alt": 90.0 } }
+        { "timestamp": "2026-06-01T14:00:00.000Z", "position": { "lat": 28.6250, "lon": 77.2150, "alt": 90.0 } },
+        { "timestamp": "2026-06-01T14:05:00.000Z", "position": { "lat": 28.6280, "lon": 77.2180, "alt": 95.0 } },
+        { "timestamp": "2026-06-01T14:10:00.000Z", "position": { "lat": 28.6250, "lon": 77.2150, "alt": 90.0 } }
       ],
-      "latestState": { "position": { "lat": 37.79000, "lon": -122.41000, "alt": 90.0 }, "timestamp": "2026-06-01T14:10:00.000Z" },
+      "latestState": { "position": { "lat": 28.6250, "lon": 77.2150, "alt": 90.0 }, "timestamp": "2026-06-01T14:10:00.000Z" },
       "note": "Event 3 has a different dedupe_key from event 1 (different timestamp) so it's accepted as a new event, not rejected as a duplicate, even though the position is identical to event 1."
     }
   ]

@@ -61,21 +61,39 @@ export default function FixtureLoader({ onLoad }: FixtureLoaderProps) {
     setLoading(null);
   };
 
+  const resetDemo = async () => {
+    setLoading("reset");
+    try {
+      await fetch("/api/fixtures/reset", { method: "POST" });
+      setResults({});
+      onLoad?.();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(null);
+    }
+  };
+
   return (
     <div className="space-y-1">
-      <button
-        onClick={loadAll}
-        disabled={!!loading}
-        className="w-full py-1.5 px-2 rounded-md bg-secondary hover:bg-secondary/80 disabled:opacity-50 text-secondary-foreground text-[10px] font-semibold transition-colors border border-border flex items-center justify-center gap-1.5 mb-2"
-      >
-        {loading === "all" ? (
-          <Loader2 size={12} className="animate-spin" />
-        ) : (
-          <Package size={12} />
-        )}
-        Load All
-      </button>
-
+      <div className="flex flex-col gap-2 p-3 pb-0">
+        <button
+          onClick={loadAll}
+          disabled={loading !== null}
+          className="w-full flex items-center justify-center gap-2 px-3 py-1.5 bg-foreground text-background text-[11px] font-medium rounded hover:bg-foreground/90 transition-colors disabled:opacity-50"
+        >
+          {loading === "all" ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
+          {loading === "all" ? "Loading..." : "Load All Fixtures"}
+        </button>
+        <button
+          onClick={resetDemo}
+          disabled={loading !== null}
+          className="w-full flex items-center justify-center gap-2 px-3 py-1.5 bg-destructive/10 text-destructive border border-destructive/20 text-[11px] font-medium rounded hover:bg-destructive/20 transition-colors disabled:opacity-50"
+        >
+          {loading === "reset" ? <Loader2 size={14} className="animate-spin" /> : <XCircle size={14} />}
+          Reset Database
+        </button>
+      </div>
       {FIXTURES.map((f) => {
         const result = results[f.id];
         return (

@@ -7,28 +7,28 @@
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T10:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.77490, "lon": -122.41940, "alt": 120.0 },
+      "position": { "lat": 28.60390, "lon": 77.20960, "alt": 120.0 },
       "confidence": 0.91
     },
     {
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T10:00:00.000Z",
       "source": "LiDAR",
-      "position": { "lat": 37.77505, "lon": -122.41960, "alt": 118.0 },
+      "position": { "lat": 28.60405, "lon": 77.20940, "alt": 118.0 },
       "confidence": 0.70
     },
     {
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T10:00:05.000Z",
       "source": "GPS",
-      "position": { "lat": 37.77520, "lon": -122.41975, "alt": 122.0 },
+      "position": { "lat": 28.60420, "lon": 77.20925, "alt": 122.0 },
       "confidence": 0.75
     },
     {
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T10:00:05.000Z",
       "source": "LiDAR",
-      "position": { "lat": 37.77522, "lon": -122.41978, "alt": 121.0 },
+      "position": { "lat": 28.60422, "lon": 77.20922, "alt": 121.0 },
       "confidence": 0.85
     }
   ],

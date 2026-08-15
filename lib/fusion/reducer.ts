@@ -75,7 +75,7 @@ export function foldEvents(input: ReducerInput): ReducerOutput {
     const isConflict = sources.size > 1;
 
     let decisionId: string | null = null;
-    let decision: ConflictDecision | null = null;
+    let decision: ConflictDecision;
 
     const bucketTimestamp = bucket[0].event_timestamp;
     const manualOverrideSource = input.overrides?.[bucketTimestamp];
@@ -84,6 +84,7 @@ export function foldEvents(input: ReducerInput): ReducerOutput {
       decisionId = generateDecisionId(bucket);
       const chosenEvent = bucket.find((e) => e.source === manualOverrideSource) || bucket[0];
       decision = {
+        id: decisionId,
         drone_id: bucket[0].drone_id,
         decision_timestamp: bucketTimestamp,
         input_event_ids: bucket.map((e) => e.id),
@@ -117,7 +118,7 @@ export function foldEvents(input: ReducerInput): ReducerOutput {
       lat: decision.output_lat,
       lon: decision.output_lon,
       alt: decision.output_alt,
-      confidence: bucket.find((e) => e.source === decision!.source_of_truth)?.confidence ?? null,
+      confidence: bucket.find((e) => e.source === decision.source_of_truth)?.confidence ?? null,
       source_of_truth: decision.source_of_truth,
       status: decision.output_status,
       caused_by_event_id: causedByEvent.id,

@@ -10,9 +10,10 @@ import AlertBanner from "@/components/AlertBanner";
 import RuleEditor from "@/components/RuleEditor";
 import DroneMap from "@/components/DroneMap";
 import { AnimatedNumber } from "@/components/ui/badges";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import {
   Crosshair, Download, List, Zap, Settings, X,
-  Radio, AlertTriangle, ChevronDown, ChevronUp, Info
+  Radio, AlertTriangle, ChevronDown, ChevronUp, Info, GripVertical
 } from "lucide-react";
 
 // ── Tutorial overlay ──────────────────────────────────────────────────────────
@@ -195,140 +196,145 @@ export default function Dashboard() {
       {/* ── Alert banner ── */}
       <AlertBanner onViewDrone={(id) => { selectDrone(id); setActiveTab("conflicts"); }} />
 
-      {/* ── 3-column layout ── */}
-      {/*
-        Desktop: left(240px) | center(flex-1) | right(260px)
-        Mobile:  stacks vertically
-      */}
+      {/* ── Resizable 3-column layout ── */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
 
-        {/* ── LEFT: Fleet list + Simulation Data ── */}
-        <aside className="
-          w-full lg:w-[240px] shrink-0
-          flex flex-col
-          border-b lg:border-b-0 lg:border-r border-border
-          bg-card
-          max-h-[40vh] lg:max-h-none
-          overflow-hidden
-        ">
-          {/* Fleet list */}
-          <div className="flex-1 overflow-y-auto min-h-0 p-3">
-            <div className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-              Active Fleet
-            </div>
-            <DroneList selectedDroneId={selectedDroneId} onSelect={selectDrone} />
-          </div>
+        {/* Mobile stacked (non-resizable) — show simple columns on small screens */}
+        <div className="hidden lg:flex w-full h-full">
+          <PanelGroup direction="horizontal" autoSaveId="sfcr-layout">
 
-          {/* Simulation Data — collapsible */}
-          <div className="shrink-0 border-t border-border">
-            <button
-              onClick={() => setFixtureOpen((v) => !v)}
-              className="w-full flex items-center justify-between px-3 py-2 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-secondary/40 transition-colors"
-            >
-              <span>Simulation Data</span>
-              {fixtureOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
-            </button>
-            {fixtureOpen && (
-              <div className="px-3 pb-3 bg-secondary/20 overflow-y-auto max-h-[200px]">
-                <FixtureLoader onLoad={() => fetchDrones()} />
+            {/* ── LEFT panel ── */}
+            <Panel defaultSize={18} minSize={12} maxSize={30} className="flex flex-col border-r border-border bg-card overflow-hidden">
+              <div className="flex-1 overflow-y-auto min-h-0 p-3">
+                <div className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                  Active Fleet
+                </div>
+                <DroneList selectedDroneId={selectedDroneId} onSelect={selectDrone} />
               </div>
-            )}
-          </div>
-        </aside>
+              <div className="shrink-0 border-t border-border">
+                <button
+                  onClick={() => setFixtureOpen((v) => !v)}
+                  className="w-full flex items-center justify-between px-3 py-2 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-secondary/40 transition-colors"
+                >
+                  <span>Simulation Data</span>
+                  {fixtureOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
+                </button>
+                {fixtureOpen && (
+                  <div className="px-3 pb-3 bg-secondary/20 overflow-y-auto max-h-[200px]">
+                    <FixtureLoader onLoad={() => fetchDrones()} />
+                  </div>
+                )}
+              </div>
+            </Panel>
 
-        {/* ── CENTER: Map (squarish, dominant) ── */}
-        <main className="
-          flex-1
-          flex items-center justify-center
-          bg-secondary/10
-          overflow-hidden
-          min-h-[40vh] lg:min-h-0
-        ">
-          {/* Squarish map container — aspect-square bounded by available space */}
-          <div className="
-            w-full h-full
-            lg:max-w-none lg:max-h-none
-            relative
-          ">
+            <PanelResizeHandle className="w-1 hover:w-1.5 transition-all bg-border hover:bg-foreground/20 flex items-center justify-center cursor-col-resize group">
+              <GripVertical size={10} className="text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
+            </PanelResizeHandle>
+
+            {/* ── CENTER: Map ── */}
+            <Panel defaultSize={62} minSize={40} className="flex flex-col overflow-hidden bg-secondary/10">
+              <DroneMap selectedDroneId={selectedDroneId} onSelectDrone={(id) => { selectDrone(id); }} />
+            </Panel>
+
+            <PanelResizeHandle className="w-1 hover:w-1.5 transition-all bg-border hover:bg-foreground/20 flex items-center justify-center cursor-col-resize group">
+              <GripVertical size={10} className="text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
+            </PanelResizeHandle>
+
+            {/* ── RIGHT: Telemetry detail panel ── */}
+            <Panel defaultSize={20} minSize={14} maxSize={35} className="flex flex-col border-l border-border bg-card overflow-hidden">
+              <div className="shrink-0 flex items-center justify-between px-3 py-2 border-b border-border">
+                {selectedDroneId ? (
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Crosshair size={12} className="text-muted-foreground shrink-0" />
+                    <span className="text-xs font-mono font-semibold text-foreground truncate">{selectedDroneId}</span>
+                  </div>
+                ) : (
+                  <span className="text-[10px] text-muted-foreground font-medium">Select a drone</span>
+                )}
+                {selectedDroneId && (
+                  <a
+                    href={`/api/drones/${selectedDroneId}/audit`}
+                    download
+                    title="Export audit trail"
+                    className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <Download size={12} />
+                  </a>
+                )}
+              </div>
+              {selectedDroneId && (
+                <div className="shrink-0 flex border-b border-border">
+                  <button
+                    onClick={() => setActiveTab("timeline")}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
+                      activeTab === "timeline"
+                        ? "border-foreground text-foreground"
+                        : "border-transparent text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <List size={11} /> Timeline
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("conflicts")}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
+                      activeTab === "conflicts"
+                        ? "border-foreground text-foreground"
+                        : "border-transparent text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <Zap size={11} /> Conflicts
+                  </button>
+                </div>
+              )}
+              <div className="flex-1 overflow-y-auto min-h-0 p-3">
+                {selectedDroneId ? (
+                  activeTab === "timeline" ? (
+                    <DroneTimeline droneId={selectedDroneId} />
+                  ) : (
+                    <ConflictViewer droneId={selectedDroneId} />
+                  )
+                ) : (
+                  <div className="h-full flex flex-col items-center justify-center text-center gap-2 py-8">
+                    <Crosshair size={20} className="text-muted-foreground opacity-40" />
+                    <p className="text-[10px] text-muted-foreground">
+                      Select a drone from the fleet<br />or click a marker on the map
+                    </p>
+                  </div>
+                )}
+              </div>
+            </Panel>
+
+          </PanelGroup>
+        </div>
+
+        {/* Mobile fallback — simple stack */}
+        <div className="lg:hidden flex flex-col w-full h-full">
+          <aside className="w-full flex flex-col border-b border-border bg-card max-h-[40vh] overflow-hidden">
+            <div className="flex-1 overflow-y-auto min-h-0 p-3">
+              <div className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">Active Fleet</div>
+              <DroneList selectedDroneId={selectedDroneId} onSelect={selectDrone} />
+            </div>
+            <div className="shrink-0 border-t border-border">
+              <button onClick={() => setFixtureOpen((v) => !v)} className="w-full flex items-center justify-between px-3 py-2 text-[9px] font-semibold uppercase tracking-widest text-muted-foreground hover:text-foreground hover:bg-secondary/40 transition-colors">
+                <span>Simulation Data</span>
+                {fixtureOpen ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
+              </button>
+              {fixtureOpen && <div className="px-3 pb-3 bg-secondary/20 overflow-y-auto max-h-[200px]"><FixtureLoader onLoad={() => fetchDrones()} /></div>}
+            </div>
+          </aside>
+          <main className="flex-1 overflow-hidden min-h-[40vh]">
             <DroneMap selectedDroneId={selectedDroneId} onSelectDrone={(id) => { selectDrone(id); }} />
-          </div>
-        </main>
-
-        {/* ── RIGHT: Telemetry detail panel ── */}
-        <aside className="
-          w-full lg:w-[260px] shrink-0
-          flex flex-col
-          border-t lg:border-t-0 lg:border-l border-border
-          bg-card
-          max-h-[45vh] lg:max-h-none
-          overflow-hidden
-        ">
-          {/* Panel header */}
-          <div className="shrink-0 flex items-center justify-between px-3 py-2 border-b border-border">
-            {selectedDroneId ? (
-              <div className="flex items-center gap-2 min-w-0">
-                <Crosshair size={12} className="text-muted-foreground shrink-0" />
-                <span className="text-xs font-mono font-semibold text-foreground truncate">{selectedDroneId}</span>
-              </div>
-            ) : (
-              <span className="text-[10px] text-muted-foreground font-medium">Select a drone</span>
-            )}
-            {selectedDroneId && (
-              <a
-                href={`/api/drones/${selectedDroneId}/audit`}
-                download
-                title="Export audit trail"
-                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <Download size={12} />
-              </a>
-            )}
-          </div>
-
-          {/* Tab bar */}
-          {selectedDroneId && (
-            <div className="shrink-0 flex border-b border-border">
-              <button
-        onClick={() => setActiveTab("timeline")}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
-                  activeTab === "timeline"
-                    ? "border-foreground text-foreground"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <List size={11} /> Timeline
-              </button>
-              <button
-                onClick={() => setActiveTab("conflicts")}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-2 text-[10px] font-semibold transition-colors border-b-2 ${
-                  activeTab === "conflicts"
-                    ? "border-foreground text-foreground"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Zap size={11} /> Conflicts
-              </button>
+          </main>
+          <aside className="w-full flex flex-col border-t border-border bg-card max-h-[45vh] overflow-hidden">
+            <div className="shrink-0 flex items-center justify-between px-3 py-2 border-b border-border">
+              {selectedDroneId ? <span className="text-xs font-mono font-semibold text-foreground truncate">{selectedDroneId}</span> : <span className="text-[10px] text-muted-foreground font-medium">Select a drone</span>}
             </div>
-          )}
+            <div className="flex-1 overflow-y-auto min-h-0 p-3">
+              {selectedDroneId ? (activeTab === "timeline" ? <DroneTimeline droneId={selectedDroneId} /> : <ConflictViewer droneId={selectedDroneId} />) : null}
+            </div>
+          </aside>
+        </div>
 
-          {/* Panel body */}
-          <div className="flex-1 overflow-y-auto min-h-0 p-3">
-            {selectedDroneId ? (
-              activeTab === "timeline" ? (
-                <DroneTimeline droneId={selectedDroneId} />
-              ) : (
-                <ConflictViewer droneId={selectedDroneId} />
-              )
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-center gap-2 py-8">
-                <Crosshair size={20} className="text-muted-foreground opacity-40" />
-                <p className="text-[10px] text-muted-foreground">
-                  Select a drone from the fleet<br />or click a marker on the map
-                </p>
-              </div>
-            )}
-          </div>
-        </aside>
       </div>
     </div>
   );

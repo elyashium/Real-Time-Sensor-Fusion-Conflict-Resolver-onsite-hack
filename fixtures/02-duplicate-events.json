@@ -8,7 +8,7 @@
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T11:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+      "position": { "lat": 28.6139, "lon": 77.2090, "alt": 100.0 },
       "confidence": 0.88
     },
     {
@@ -17,7 +17,7 @@
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T11:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+      "position": { "lat": 28.6139, "lon": 77.2090, "alt": 100.0 },
       "confidence": 0.88
     },
     {
@@ -26,7 +26,7 @@
       "drone_id": "drone-alpha",
       "timestamp": "2026-06-01T11:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.78012, "lon": -122.42015, "alt": 101.5 },
+      "position": { "lat": 28.6140, "lon": 77.2091, "alt": 101.5 },
       "confidence": 0.93
     }
   ],
@@ -37,7 +37,7 @@
     {
       "finalState": {
         "drone_id": "drone-alpha",
-        "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+        "position": { "lat": 28.6139, "lon": 77.2090, "alt": 100.0 },
         "confidence": 0.88,
         "note": "Only event 1's values ever land in the state — the corrected retry in event 3 is silently rejected at the ingestion boundary, not the resolution layer."
       }

@@ -1,51 +1,50 @@
 # Real-Time Sensor Fusion Conflict Resolver
 
 ## Project Overview
-A real-time sensor fusion conflict resolver for autonomous drone operations. This system ingests multi-source sensor data streams (GPS, IMU, LiDAR, Video) from multiple drones, reconstructing a consistent, time-ordered, and conflict-free state. Discrepancies and late-arriving events are resolved via a pure-functional, deterministic logic engine, providing a mathematically rigorous and explainable audit trail for every decision. 
+A real-time sensor fusion conflict resolver for autonomous drone operations. This system ingests multi-source sensor data streams (GPS, IMU, LiDAR, Video) from multiple drones, reconstructing a consistent, time-ordered, and conflict-free state. Discrepancies and late-arriving events are resolved via a pure-functional, deterministic logic engine, providing a mathematically rigorous and explainable audit trail for every decision.
 
 This architecture acts as an immutable event-sourced ledger, natively satisfying all requirements for determinism, idempotency, and replayability.
 
+![C2 Dashboard — Active Fleet, Map, and Conflict Ledger](https://github.com/user-attachments/assets/1f0f6768-f01f-4067-b02d-14e11f81198f)
 
+---
 
-<img width="2720" height="2160" alt="sensor_fusion_architecture" src="https://github.com/user-attachments/assets/1f0f6768-f01f-4067-b02d-14e11f81198f" />
-
-<img width="525" height="583" alt="image" src="https://github.com/user-attachments/assets/2412c752-c7fc-4dcc-8d70-f1d226e5df49" />
-
-
-telementary events 
-<img width="1620" height="706" alt="image" src="https://github.com/user-attachments/assets/5cd588a7-7780-4dc8-b4ba-ff5092663b53" />
-
-drone state versions
-<img width="1637" height="706" alt="image" src="https://github.com/user-attachments/assets/73b1f830-c6d8-42b3-be17-c7b86b8d99bc" />
-
-conflict detection 
-<img width="1626" height="689" alt="image" src="https://github.com/user-attachments/assets/8a737df9-d909-4bc1-a2f3-f0bceafdf591" />
-
-
-
-
-
-##  Codebase Architecture
+## Codebase Architecture
 
 The application is built on a modern, serverless stack designed for high-throughput event ingestion and strict data consistency.
+
+![System Architecture Diagram](https://github.com/user-attachments/assets/2412c752-c7fc-4dcc-8d70-f1d226e5df49)
 
 ### 1. Database Layer (Supabase / PostgreSQL)
 The core of the system is a strict, normalized PostgreSQL schema designed for Event Sourcing:
 - `telemetry_events`: An append-only, immutable ledger of every raw sensor reading. A `dedupe_key` (SHA256 hash) strictly enforces idempotency at the database level.
+
+  ![Telemetry Events table — append-only raw event log](https://github.com/user-attachments/assets/5cd588a7-7780-4dc8-b4ba-ff5092663b53)
+
 - `drone_state_versions`: A materialized view of the derived drone states (lat, lon, alt, confidence, and source of truth).
+
+  ![Drone State Versions table — derived resolved states](https://github.com/user-attachments/assets/73b1f830-c6d8-42b3-be17-c7b86b8d99bc)
+
 - `conflict_decisions`: An audit trail that logs exactly *why* a specific sensor was chosen as the source of truth, referencing the exact rule applied.
+
+  ![Conflict Decisions table — rule-based audit trail](https://github.com/user-attachments/assets/8a737df9-d909-4bc1-a2f3-f0bceafdf591)
+
 - `resolution_rules`: A version-controlled JSON ruleset that determines conflict resolution logic.
 
 ### 2. API & Logic Engine (Next.js App Router)
 The backend logic lives in serverless Next.js API routes (`/app/api/`):
 - **Ingestion (`/api/events`)**: Receives raw telemetry. It handles schema validation, idempotency checks, and triggers the reconciliation engine.
 - **Reconciliation Engine (`lib/fusion/`)**: A pure-functional engine that performs a deterministic "fold" over the raw events. It sorts events by effective timestamp, detects conflicts, applies the dynamic ruleset to pick a winner, and writes the decision back to the database.
+- **Human Override (`/api/overrides`)**: Accepts human-in-the-loop decisions to force-resolve a conflict, re-running the engine with the override applied.
 
 ### 3. Frontend Dashboard (React + Zustand)
-A real-time, responsive C2 (Command & Control) dashboard:
-- **Global State (`lib/store/dashboard.ts`)**: Uses Zustand to manage UI state and poll the API for live drone updates.
-- **Map View (`components/DroneMap.tsx`)**: Renders drones using Leaflet. Displays unresolved drones with amber conflict rings, utilizing a fallback mechanism to render drones that have *never* had a valid resolved position.
-- **Telemetry & Audit (`components/ConflictViewer.tsx`, `components/DroneTimeline.tsx`)**: Displays the chronological state history and the conflict ledger for explainable AI/decision-making.
+A real-time, responsive C2 (Command & Control) dashboard with fully resizable panels:
+- **Global State (`lib/store/dashboard.ts`)**: Uses Zustand to manage UI state and poll the API for live drone updates every 2 seconds.
+- **Map View (`components/DroneMap.tsx`)**: Renders drones using Leaflet centered on New Delhi. Displays resolved drones (green), unresolved drones with amber conflict rings, and stale drones (grey).
+- **Telemetry & Audit (`components/ConflictViewer.tsx`, `components/DroneTimeline.tsx`)**: Displays the chronological state history and the conflict ledger. Unresolved conflicts show "Force Trust [Source]" buttons for human override.
+
+
+
 
 ---
 

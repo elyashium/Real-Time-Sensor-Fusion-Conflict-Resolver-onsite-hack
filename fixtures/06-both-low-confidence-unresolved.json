@@ -7,14 +7,14 @@
       "drone_id": "drone-delta",
       "timestamp": "2026-06-01T13:00:00.000Z",
       "source": "GPS",
-      "position": { "lat": 37.76000, "lon": -122.45000, "alt": 60.0 },
+      "position": { "lat": 28.6200, "lon": 77.2200, "alt": 60.0 },
       "confidence": 0.35
     },
     {
       "drone_id": "drone-delta",
       "timestamp": "2026-06-01T13:00:00.000Z",
       "source": "LiDAR",
-      "position": { "lat": 37.76020, "lon": -122.45030, "alt": 58.0 },
+      "position": { "lat": 28.6202, "lon": 77.2203, "alt": 58.0 },
       "confidence": 0.50
     }
   ],

@@ -46,8 +46,8 @@ export default function DroneMap({ selectedDroneId, onSelectDrone }: DroneMapPro
       });
 
       const map = L.map(mapContainerRef.current!, {
-        center: [37.78, -122.42],
-        zoom: 13,
+        center: [28.6139, 77.2090],
+        zoom: 12,
         zoomControl: true,
         attributionControl: true,
       });
