@@ -5,8 +5,37 @@ import { supabaseAdmin } from "@/lib/db/supabase-admin";
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-// The exact drone IDs present in the fixtures directory
-const FIXTURE_DRONE_IDS = ["drone-alpha", "drone-bravo", "drone-charlie", "drone-delta", "drone-echo"];
+/**
+ * Determinism Acceptance Test
+ *
+ * Goal: prove that foldEvents + reconcileDrone produce the same derived state
+ * regardless of the submission order of events.
+ *
+ * Strategy:
+ *   Run A: replay all fixture events (in file order) against drone IDs suffixed "-a"
+ *   Run B: replay ALL the same events (in REVERSED order) against drone IDs suffixed "-b"
+ *   Assert: drone_state_versions and conflict_decisions are deep-equal between A and B
+ *           (after normalizing drone_id to strip the suffix)
+ *
+ * We use distinct drone IDs per run so the append-only telemetry_events table
+ * (which has no DELETE policy by design) never causes false duplicates.
+ */
+
+const RUN_STAMP = Date.now().toString(36);
+
+// Canonical fixture drone IDs
+const CANONICAL_DRONES = ["drone-alpha", "drone-bravo", "drone-charlie", "drone-delta", "drone-echo"];
+
+function makeRunDroneId(canonical: string, runLabel: "a" | "b") {
+  return `det-${canonical}-${RUN_STAMP}-${runLabel}`;
+}
+
+function remapEvents(events: any[], runLabel: "a" | "b"): any[] {
+  return events.map((e) => ({
+    ...e,
+    drone_id: makeRunDroneId(e.drone_id ?? e.droneId, runLabel),
+  }));
+}
 
 function mockReplayRequest(events: any[]) {
   return new NextRequest("http://localhost/api/events/replay", {
@@ -15,78 +44,79 @@ function mockReplayRequest(events: any[]) {
   });
 }
 
-function loadAllFixtures() {
+function loadAllFixtures(): any[] {
   const fixturesDir = path.join(__dirname, "..", "fixtures");
   const files = readdirSync(fixturesDir).filter((f) => f.endsWith(".json"));
-  let allEvents: any[] = [];
+  let all: any[] = [];
   for (const file of files) {
-    const raw = readFileSync(path.join(fixturesDir, file), "utf-8");
-    const fixture = JSON.parse(raw);
-    allEvents = allEvents.concat(fixture.events);
+    const fixture = JSON.parse(readFileSync(path.join(fixturesDir, file), "utf-8"));
+    all = all.concat(fixture.events);
   }
-  return allEvents;
+  return all;
 }
 
-async function clearFixtureDrones() {
-  for (const droneId of FIXTURE_DRONE_IDS) {
-    await supabaseAdmin.from("telemetry_events").delete().eq("drone_id", droneId);
-    await supabaseAdmin.from("drone_state_versions").delete().eq("drone_id", droneId);
-    await supabaseAdmin.from("conflict_decisions").delete().eq("drone_id", droneId);
-  }
-}
+async function snapshotState(runLabel: "a" | "b") {
+  const droneIds = CANONICAL_DRONES.map((d) => makeRunDroneId(d, runLabel));
 
-async function snapshotFixtureState() {
-  const { data: states } = await supabaseAdmin
+  const { data: states, error: se } = await supabaseAdmin
     .from("drone_state_versions")
     .select("drone_id, version, effective_timestamp, lat, lon, alt, confidence, source_of_truth, status")
-    .in("drone_id", FIXTURE_DRONE_IDS)
+    .in("drone_id", droneIds)
     .order("drone_id")
     .order("version");
 
-  const { data: decisions } = await supabaseAdmin
+  const { data: decisions, error: de } = await supabaseAdmin
     .from("conflict_decisions")
     .select("drone_id, decision_timestamp, rule_applied, output_status")
-    .in("drone_id", FIXTURE_DRONE_IDS)
+    .in("drone_id", droneIds)
     .order("drone_id")
     .order("decision_timestamp");
 
-  return { states, decisions };
+  if (se) throw new Error(`state snapshot error: ${se.message}`);
+  if (de) throw new Error(`decision snapshot error: ${de.message}`);
+
+  // Normalize drone_id back to canonical form for comparison
+  const normalize = (rows: any[], label: string) =>
+    (rows ?? []).map((r) => ({
+      ...r,
+      drone_id: r.drone_id.replace(`-${RUN_STAMP}-${label}`, ""),
+    }));
+
+  return {
+    states: normalize(states ?? [], runLabel),
+    decisions: normalize(decisions ?? [], runLabel),
+  };
 }
 
 describe("Determinism Acceptance Test", () => {
-  let allEvents: any[];
+  let rawEvents: any[];
 
-  beforeAll(async () => {
-    allEvents = loadAllFixtures();
-    await clearFixtureDrones();
-  }, 30000);
+  beforeAll(() => {
+    rawEvents = loadAllFixtures();
+  });
 
-  it("replaying all fixtures twice yields exact deep equal database derived state", async () => {
-    // 1. Replay first time (events in fixture file order)
-    const res1 = await POST(mockReplayRequest(allEvents));
-    expect(res1.status).toBe(200);
+  it("replaying all fixtures in two different orders yields identical derived state", async () => {
+    // Run A: events in file order, drone IDs suffixed "-a"
+    const eventsA = remapEvents(rawEvents, "a");
+    const resA = await POST(mockReplayRequest(eventsA));
+    expect(resA.status).toBe(200);
+    const jsonA = await resA.json();
+    expect(jsonA.accepted).toBeGreaterThan(0);
 
-    // Snapshot fixture-drone state after first replay
-    const { states: state1, decisions: dec1 } = await snapshotFixtureState();
+    // Run B: same events in reverse order, drone IDs suffixed "-b"
+    const eventsB = remapEvents([...rawEvents].reverse(), "b");
+    const resB = await POST(mockReplayRequest(eventsB));
+    expect(resB.status).toBe(200);
+    const jsonB = await resB.json();
+    expect(jsonB.accepted).toBeGreaterThan(0);
 
-    // 2. Clear only fixture drone data, then replay in reverse order
-    await clearFixtureDrones();
-    const reversedEvents = [...allEvents].reverse();
+    // Snapshot both runs
+    const { states: statesA, decisions: decsA } = await snapshotState("a");
+    const { states: statesB, decisions: decsB } = await snapshotState("b");
 
-    const res2 = await POST(mockReplayRequest(reversedEvents));
-    expect(res2.status).toBe(200);
-
-    // Snapshot fixture-drone state after second replay
-    const { states: state2, decisions: dec2 } = await snapshotFixtureState();
-
-    // 3. Assert deep equality — order of submission must not change derived state
-    expect(state1).toBeDefined();
-    expect(state2).toBeDefined();
-    expect(state1!.length).toBeGreaterThan(0);
-    expect(state1).toEqual(state2);
-
-    expect(dec1).toBeDefined();
-    expect(dec2).toBeDefined();
-    expect(dec1).toEqual(dec2);
+    // Assert deep equality
+    expect(statesA.length).toBeGreaterThan(0);
+    expect(statesA).toEqual(statesB);
+    expect(decsA).toEqual(decsB);
   }, 60000);
 });

@@ -1,14 +1,126 @@
-export default function Home() {
+"use client";
+
+import { useState, useCallback } from "react";
+import DroneList from "@/components/DroneList";
+import DroneTimeline from "@/components/DroneTimeline";
+import ConflictViewer from "@/components/ConflictViewer";
+import FixtureLoader from "@/components/FixtureLoader";
+import { AnimatedNumber } from "@/components/ui/badges";
+
+type Tab = "timeline" | "conflicts";
+
+export default function Dashboard() {
+  const [selectedDroneId, setSelectedDroneId] = useState<string | null>(null);
+  const [tab, setTab] = useState<Tab>("timeline");
+  const [droneListKey, setDroneListKey] = useState(0);
+
+  const handleFixtureLoad = useCallback(() => {
+    // Re-render drone list after fixture load
+    setDroneListKey((k) => k + 1);
+  }, []);
+
   return (
-    <div
-      style={{
-        maxWidth: 1280,
-        margin: '0 auto',
-        padding: '2rem',
-        textAlign: 'center',
-      }}
-    >
-      Start prompting.
+    <div className="min-h-screen bg-[#0a0a0f] text-zinc-100 flex flex-col">
+      {/* Header */}
+      <header className="border-b border-white/8 bg-black/30 backdrop-blur-xl sticky top-0 z-50">
+        <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-lg">
+              🛸
+            </div>
+            <div>
+              <h1 className="text-sm font-bold text-white leading-tight">
+                Sensor Fusion Conflict Resolver
+              </h1>
+              <p className="text-xs text-zinc-500">Real-Time Drone Telemetry Dashboard</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs text-zinc-400">Live</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="flex-1 flex overflow-hidden max-w-screen-xl mx-auto w-full">
+        {/* Left sidebar — Drones + Fixtures */}
+        <aside className="w-72 shrink-0 border-r border-white/8 overflow-y-auto flex flex-col">
+          {/* Drone List */}
+          <div className="p-4 border-b border-white/6">
+            <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
+              Active Drones
+            </h2>
+            <DroneList
+              key={droneListKey}
+              selectedDroneId={selectedDroneId}
+              onSelect={setSelectedDroneId}
+            />
+          </div>
+
+          {/* Fixture Loader */}
+          <div className="p-4">
+            <h2 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
+              Load Fixtures
+            </h2>
+            <FixtureLoader onLoad={handleFixtureLoad} />
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <main className="flex-1 overflow-y-auto">
+          {selectedDroneId ? (
+            <div className="p-6">
+              {/* Drone header */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-xl font-bold font-mono text-white">{selectedDroneId}</h2>
+                  <p className="text-sm text-zinc-500 mt-0.5">Telemetry history & conflict decisions</p>
+                </div>
+                <a
+                  href={`/api/drones/${selectedDroneId}/audit`}
+                  download
+                  id={`download-audit-${selectedDroneId}`}
+                  className="px-4 py-2 rounded-lg bg-white/6 hover:bg-white/10 text-xs font-semibold text-zinc-300 border border-white/10 transition-all duration-150 flex items-center gap-2"
+                >
+                  ↓ Export Audit
+                </a>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex gap-1 mb-6 bg-white/4 rounded-xl p-1 w-fit">
+                {(["timeline", "conflicts"] as Tab[]).map((t) => (
+                  <button
+                    key={t}
+                    id={`tab-${t}`}
+                    onClick={() => setTab(t)}
+                    className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 capitalize
+                      ${tab === t
+                        ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"
+                        : "text-zinc-500 hover:text-zinc-300"
+                      }`}
+                  >
+                    {t === "timeline" ? "📋 State Timeline" : "⚡ Conflicts"}
+                  </button>
+                ))}
+              </div>
+
+              {tab === "timeline" ? (
+                <DroneTimeline droneId={selectedDroneId} />
+              ) : (
+                <ConflictViewer droneId={selectedDroneId} />
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-center p-12">
+              <div className="text-6xl mb-4 opacity-30">🛸</div>
+              <h3 className="text-lg font-semibold text-zinc-400 mb-2">No drone selected</h3>
+              <p className="text-sm text-zinc-600 max-w-xs">
+                Select a drone from the left panel, or load a fixture to populate the system with telemetry events.
+              </p>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 }
