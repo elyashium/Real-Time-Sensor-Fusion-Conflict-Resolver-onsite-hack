@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { trackEvent } from "@/lib/analytics/posthog";
+import { Zap, Check } from "lucide-react";
 
 interface Decision {
   id: string;
@@ -71,8 +72,8 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
           >
             <div className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center gap-2">
-                <span className={`text-lg ${isConflict ? "text-amber-400" : "text-emerald-400"}`}>
-                  {isConflict ? "⚡" : "✓"}
+                <span className="text-xl">
+                  {isConflict ? <Zap size={18} className="text-amber-500" /> : <Check size={18} className="text-emerald-500" />}
                 </span>
                 <span className="text-xs font-mono text-zinc-300">
                   {new Date(d.decision_timestamp).toLocaleString()}

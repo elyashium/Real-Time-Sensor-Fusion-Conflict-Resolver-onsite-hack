@@ -2,11 +2,13 @@
 
 import { useDashboardStore } from "@/lib/store/dashboard";
 import { AnimatedNumber } from "@/components/ui/badges";
+import { Radio, Crosshair, Zap, AlertTriangle } from "lucide-react";
+import { ReactNode } from "react";
 
 interface Stat {
   label: string;
   value: number;
-  icon: string;
+  icon: ReactNode;
   accent?: string;
 }
 
@@ -19,10 +21,10 @@ export default function MetricsBar() {
   const totalUnresolved = drones.reduce((sum, d) => sum + d.unresolved_count, 0);
 
   const stats: Stat[] = [
-    { label: "Total Events", value: totalEvents, icon: "📡" },
-    { label: "Active Drones", value: activeDrones, icon: "🛸" },
-    { label: "Unresolved Conflicts", value: totalUnresolved, icon: "⚡", accent: totalUnresolved > 0 ? "text-amber-400" : undefined },
-    { label: "Conflict Drones", value: unresolvedDrones, icon: "⚠", accent: unresolvedDrones > 0 ? "text-amber-400" : undefined },
+    { label: "Total Events", value: totalEvents, icon: <Radio size={16} /> },
+    { label: "Active Drones", value: activeDrones, icon: <Crosshair size={16} /> },
+    { label: "Unresolved Conflicts", value: totalUnresolved, icon: <Zap size={16} />, accent: totalUnresolved > 0 ? "text-amber-400" : undefined },
+    { label: "Conflict Drones", value: unresolvedDrones, icon: <AlertTriangle size={16} />, accent: unresolvedDrones > 0 ? "text-amber-400" : undefined },
   ];
 
   return (

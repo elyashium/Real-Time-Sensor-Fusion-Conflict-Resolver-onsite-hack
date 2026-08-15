@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { trackEvent } from "@/lib/analytics/posthog";
+import { Settings, X, Check } from "lucide-react";
 
 interface Rule {
   id: string;
@@ -49,7 +50,7 @@ export default function RuleEditor() {
       });
       const json = await res.json();
       if (res.ok) {
-        setStatus({ ok: true, msg: `✓ Rules updated to v${json.version}` });
+        setStatus({ ok: true, msg: `Rules updated to v${json.version}` });
         trackEvent("rules_updated", { version: json.version });
         fetchRules();
       } else {
@@ -67,9 +68,9 @@ export default function RuleEditor() {
       <button
         id="open-rule-editor"
         onClick={() => setOpen(true)}
-        className="w-full mt-3 py-2 px-3 rounded-xl border border-white/10 bg-white/4 hover:bg-white/8 text-xs text-zinc-400 hover:text-zinc-200 font-semibold transition-all duration-150 flex items-center justify-center gap-2"
+        className="py-1.5 px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs text-zinc-300 font-semibold transition-all flex items-center justify-center gap-2"
       >
-        ⚙ Edit Rules
+        <Settings size={14} /> Edit Rules
       </button>
 
       {open && (
@@ -81,12 +82,12 @@ export default function RuleEditor() {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
               <div>
-                <h3 className="font-bold text-white">Conflict Resolution Rules</h3>
+                <h3 className="font-serif text-xl text-white">Conflict Resolution Rules</h3>
                 {activeRule && (
-                  <p className="text-xs text-zinc-500 mt-0.5">Active: version {activeRule.version}</p>
+                  <p className="text-xs font-medium text-zinc-500 mt-0.5">Active: version {activeRule.version}</p>
                 )}
               </div>
-              <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white text-lg leading-none">✕</button>
+              <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-white transition-colors"><X size={20} /></button>
             </div>
 
             {/* Body */}
@@ -110,8 +111,8 @@ export default function RuleEditor() {
               )}
 
               {status && (
-                <p className={`mt-3 text-sm font-semibold ${status.ok ? "text-emerald-400" : "text-red-400"}`}>
-                  {status.msg}
+                <p className={`mt-3 text-sm font-semibold flex items-center gap-2 ${status.ok ? "text-emerald-400" : "text-red-400"}`}>
+                  {status.ok ? <Check size={16} /> : <X size={16} />} {status.msg}
                 </p>
               )}
             </div>

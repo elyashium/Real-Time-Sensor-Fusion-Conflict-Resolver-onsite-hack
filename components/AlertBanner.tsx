@@ -2,6 +2,7 @@
 
 import { useDashboardStore } from "@/lib/store/dashboard";
 import { useDashboardStore as useStore } from "@/lib/store/dashboard";
+import { AlertTriangle } from "lucide-react";
 
 interface AlertBannerProps {
   onViewDrone: (id: string) => void;
@@ -15,9 +16,9 @@ export default function AlertBanner({ onViewDrone }: AlertBannerProps) {
 
   return (
     <div className="bg-amber-500/10 border-b border-amber-500/20 px-6 py-2.5">
-      <div className="max-w-screen-xl mx-auto flex items-center gap-3 flex-wrap">
+      <div className="max-w-screen-2xl mx-auto flex items-center gap-3 flex-wrap">
         <span className="text-amber-400 font-semibold text-sm flex items-center gap-1.5">
-          <span className="animate-pulse">⚠</span>
+          <AlertTriangle size={16} className="animate-pulse" />
           {unresolvedDrones.length} drone{unresolvedDrones.length !== 1 ? "s" : ""} with unresolved conflicts
         </span>
         <div className="flex gap-2 flex-wrap">
