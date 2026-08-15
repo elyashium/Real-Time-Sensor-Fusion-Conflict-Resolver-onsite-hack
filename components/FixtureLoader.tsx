@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics/posthog";
 
 const FIXTURES = [
   { id: "01-basic-gps-lidar-conflict", label: "GPS vs LiDAR Conflict", icon: "⚡" },
@@ -38,18 +39,22 @@ export default function FixtureLoader({ onLoad }: FixtureLoaderProps) {
 
       if (res.ok) {
         setResults((prev) => ({ ...prev, [fixtureId]: { ok: true, msg: `Loaded ${fixture.events.length} events` } }));
+        trackEvent("fixture_load_success", { fixture: fixtureId });
         onLoad?.();
       } else {
         setResults((prev) => ({ ...prev, [fixtureId]: { ok: false, msg: json.error ?? "Unknown error" } }));
+        trackEvent("fixture_load_error", { fixture: fixtureId, error: json.error });
       }
     } catch (e: any) {
       setResults((prev) => ({ ...prev, [fixtureId]: { ok: false, msg: e.message } }));
+      trackEvent("fixture_load_error", { fixture: fixtureId, error: e.message });
     } finally {
       setLoading(null);
     }
   };
 
   const loadAll = async () => {
+    trackEvent("load_all_fixtures_started");
     for (const f of FIXTURES) {
       await loadFixture(f.id);
     }

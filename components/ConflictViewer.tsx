@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackEvent } from "@/lib/analytics/posthog";
 
 interface Decision {
   id: string;
@@ -25,11 +26,21 @@ export default function ConflictViewer({ droneId }: ConflictViewerProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`/api/drones/${droneId}`)
-      .then((r) => r.json())
-      .then((data) => setDecisions((data.decisions ?? []).slice().reverse()))
-      .finally(() => setLoading(false));
+    async function fetchConflicts() {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/drones/${droneId}`);
+        const data = await res.json();
+        const results = (data.decisions ?? []).slice().reverse();
+        setDecisions(results);
+        trackEvent("conflict_viewed", { drone: droneId, conflictCount: results.length });
+      } catch (e) {
+        console.error("Failed to fetch conflicts", e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchConflicts();
   }, [droneId]);
 
   if (loading) return (
