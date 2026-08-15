@@ -10,7 +10,7 @@ import MetricsBar from "@/components/MetricsBar";
 import AlertBanner from "@/components/AlertBanner";
 import RuleEditor from "@/components/RuleEditor";
 import DroneMap from "@/components/DroneMap";
-import { Crosshair, Download, List, Zap, Map as MapIcon, MapOff } from "lucide-react";
+import { Crosshair, Download, List, Zap, Map as MapIcon, Compass } from "lucide-react";
 
 export default function Dashboard() {
   const {
@@ -115,7 +115,7 @@ export default function Dashboard() {
                   onClick={() => setMapVisible(!mapVisible)}
                   className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-semibold text-zinc-300 border border-white/10 transition-colors flex items-center gap-2"
                 >
-                  {mapVisible ? <MapOff size={14} /> : <MapIcon size={14} />}
+                  {mapVisible ? <Compass size={14} /> : <MapIcon size={14} />}
                   {mapVisible ? "Hide Map" : "Show Map"}
                 </button>
                 {selectedDroneId && (
