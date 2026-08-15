@@ -199,6 +199,11 @@ VALUES (
   true,
   '[
     {
+      "id": "low-confidence-unresolved",
+      "when": { "allConfidenceBelow": 0.6 },
+      "then": { "status": "unresolved" }
+    },
+    {
       "id": "gps-lidar-confidence",
       "when": { "sources": ["GPS", "LiDAR"] },
       "then": {
@@ -206,11 +211,6 @@ VALUES (
         "if": "GPS.confidence > 0.8",
         "elsePreferSource": "LiDAR"
       }
-    },
-    {
-      "id": "low-confidence-unresolved",
-      "when": { "allConfidenceBelow": 0.6 },
-      "then": { "status": "unresolved" }
     }
   ]'::jsonb
 )
