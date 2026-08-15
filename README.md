@@ -1,93 +1,106 @@
-# Real-Time Sensor Fusion Conflict Resolver 🛸
+# Real-Time Sensor Fusion Conflict Resolver
 
-A mission-critical event-sourced conflict resolution engine and C2 dashboard for autonomous drone fleets. 
+## Project Overview
+A real-time sensor fusion conflict resolver for autonomous drone operations. This system ingests multi-source sensor data streams (GPS, IMU, LiDAR, Video) from multiple drones, reconstructing a consistent, time-ordered, and conflict-free state. Discrepancies and late-arriving events are resolved via a pure-functional, deterministic logic engine, providing a mathematically rigorous and explainable audit trail for every decision. 
 
-This system ingests asynchronous, out-of-order, and conflicting telemetry events from multiple drone sensors (GPS, IMU, LiDAR, Video), detects discrepancies, and deterministically resolves them using a dynamic rule engine to produce a unified flight state.
-
-![Dashboard Preview](/app/favicon.ico) *(Replace with actual screenshot before submission)*
-
-## 🌟 Key Features & Bonus Scope Implemented
-
-- **Event-Sourced Architecture**: Built on an immutable event log. The system resolves state by computing a pure fold over the canonical event stream, guaranteeing mathematically rigorous determinism, replayability, and idempotency.
-- **Explainable AI/Audit Trail**: Every decision generates a plain-English explanation of *why* a specific rule fired, traceable directly back to the UUIDs of the input events that caused the conflict.
-- **Interactive Trajectory Map** *(Bonus)*: Real-time visual tracking of drone positions via `react-leaflet`, highlighting active conflict zones with pulsing amber radiuses.
-- **Dynamic Rule Editor UI** *(Bonus)*: Hot-reload conflict resolution rules at runtime without restarting the server. Modifying rules immediately forces a recomputation of all historical state to reflect the new logic.
-- **Unresolved Decision Alerts** *(Bonus)*: Simulates automated webhooks by surfacing real-time warning banners when a drone enters an unresolvable state (e.g. low confidence across all sensors).
-- **PostHog Analytics** *(Bonus)*: Non-blocking telemetry for operator actions (rules updated, conflicts viewed, fixtures loaded). Safe to run even if API keys are missing.
+This architecture acts as an immutable event-sourced ledger, natively satisfying all requirements for determinism, idempotency, and replayability.
 
 ---
 
-## 🛠️ Tech Stack
+## Deliverables Checklist
 
-- **Framework**: Next.js 13 (App Router), React, TypeScript
-- **Database**: Supabase (Postgres)
-- **State Management**: Zustand
-- **Styling**: Tailwind CSS
-- **Mapping**: Leaflet / React-Leaflet
-- **Testing**: Vitest (100% integration test coverage)
+### 1. Repository Contents
+- **Backend/Local API**: 
+  - `POST /api/events` for real-time ingestion, normalization, and synchronous state derivation.
+  - `POST /api/events/replay` for bulk processing and idempotency testing.
+- **Frontend Dashboard**: 
+  - Built with Next.js, Tailwind CSS, and Zustand. 
+  - Displays live drone states, historical timelines, and detailed conflict resolution logs.
+- **Telemetry Fixtures**: 
+  - Located in `/fixtures/`. 
+  - Covers 7 interacting edge cases: basic conflicts, duplicates, missing sensors, late-arriving events, out-of-order replays, unresolved low-confidence states, and legitimate state reversions.
+- **Audit Traces**: 
+  - Available dynamically via `GET /api/drones/[id]/audit` as a downloadable JSON ledger.
+
+### 2. Test Suite
+Automated Vitest integration tests covering all edge cases, running against the actual database logic.
+- `ingestion.test.ts` (API constraints and normalization)
+- `idempotency.test.ts` (Duplicate event handling)
+- `ordering.test.ts` (Late arrivals and temporal sorting)
+- `conflict-rules.test.ts` (Rule engine validation)
+- `audit-trail.test.ts` (Traceability of inputs to outputs)
+- `determinism.test.ts` (Replay ordering verification)
+
+### 3. Documentation
+Included below are the strict instructions for setting up, running, testing, and locating outputs.
 
 ---
 
-## 🚀 Setup & Run Locally
+## Technical Architecture (Event Sourcing)
+The system never mutates state in place. It relies on an append-only `telemetry_events` log. Drone states are continuously derived by executing a deterministic canonical sort (Timestamp -> Source -> UUID) followed by a pure functional fold. This guarantees that duplicate data, network latency, and out-of-order deliveries are handled natively by the architecture. 
+
+Duplicate prevention is handled firmly at the database constraint level via a SHA-256 `dedupe_key`.
+
+---
+
+## Setup Instructions
 
 ### 1. Prerequisites
 - Node.js 18+
-- A Supabase project (free tier works fine, or use `supabase local`)
+- A Supabase Project (PostgreSQL)
 
-### 2. Environment Variables
-Create a `.env.local` file in the root:
+### 2. Environment Configuration
+Create a `.env.local` file in the root directory:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 NEXT_PUBLIC_POSTHOG_KEY=optional_posthog_key
 ```
-*(Note: The Service Role Key is used securely server-side to rebuild derived state tables bypassing RLS).*
 
 ### 3. Database Initialization
-Run the SQL migration located at `supabase/migrations/20260815120151_create_telemetry_schema.sql` in your Supabase SQL Editor. This sets up:
-- `telemetry_events` (immutable append-only log)
-- `drone_state_versions` (derived)
-- `conflict_decisions` (derived audit trail)
-- `resolution_rules` (versioned JSON configurations)
+Run the schema migration found at `supabase/migrations/20260815120151_create_telemetry_schema.sql` inside your Supabase SQL Editor. This initializes:
+- `telemetry_events`
+- `drone_state_versions`
+- `conflict_decisions`
+- `resolution_rules`
 
-### 4. Install & Run
+### 4. Installation
 ```bash
 npm install --legacy-peer-deps
-npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 🧪 Testing the Application (For Judges & Operators)
+## Run Instructions
 
-The easiest way to test edge cases is through the provided C2 Dashboard fixtures.
+To start the development server and the C2 Dashboard:
+```bash
+npm run dev
+```
+Navigate to `http://localhost:3000` in your browser.
 
-### Live Dashboard Testing
-1. Open the dashboard at `http://localhost:3000`.
-2. Look at the **Load Fixtures** section in the left sidebar.
-3. Click **"Load All Fixtures"**.
-4. **Observe the Map**: You will see drone markers appear. `drone-alpha` and others will have flight trails. If a drone has an unresolved conflict (like `drone-zeta`), a pulsing amber zone will surround it.
-5. **View Timelines**: Click a drone in the left sidebar to view its canonical timeline.
-6. **View Conflicts**: Switch to the "⚡ Conflicts" tab to see exactly which rules fired. Note the plain-English `rule_applied` explanations (e.g., *"GPS preferred: confidence 0.91 > 0.8"*).
-7. **Dynamic Rules**: Click **"⚙ Edit Rules"** in the top right. Change the threshold from `0.8` to `0.95`. Click Apply. Watch the dashboard instantly update its historical decisions to reflect the new rule logic.
-8. **Audit Export**: Click the "↓ Export Audit" button on any drone to download the complete, mathematically verifiable JSON trace.
+**Using the Dashboard:**
+1. In the left sidebar under "Load Fixtures," click "Load All Fixtures" to populate the system.
+2. Select a drone from the "Active Fleet" list.
+3. Use the tabs to toggle between the chronological "State Timeline" and the "Conflict Ledger" to view plain-English rule explanations.
+4. Click "Edit Rules" in the top navigation to dynamically adjust conflict resolution logic (Bonus Scope).
 
-### Automated Test Suite
-The application includes a rigorous Vitest suite that runs against the live Supabase instance.
+---
+
+## Test Instructions
+
+The test suite runs against the live database to prove system-wide integrity.
 ```bash
 npx vitest run tests/
 ```
-**Test Coverage Includes:**
-- `determinism.test.ts`: **The Acceptance Gate.** Submits the same events in two completely different file orders and mathematically proves the derived database states are byte-identical.
-- `idempotency.test.ts`: Proves re-submitting an event 10 times causes zero side-effects.
-- `ordering.test.ts`: Proves late-arriving historical events are folded into the correct chronological position.
-- `conflict-rules.test.ts`: Validates the actual logic engine outputs.
+
+**Key Acceptance Test (`determinism.test.ts`):** 
+This test proves the core system invariant. It replays the entire suite of fixtures in forward alphabetical order, snapshots the database, truncates the derived tables, replays the fixtures in reverse alphabetical order, and asserts deep equality between the final states.
 
 ---
 
-## 🏛️ Architecture: Why Event Sourcing?
-Instead of mutating a `current_position` row in Postgres (which causes race conditions, makes replay impossible, and destroys auditability), this system writes incoming HTTP requests to an append-only `telemetry_events` log. 
+## Output Locations
 
-When a new event arrives, the system fetches all history for that drone, performs a deterministic canonical sort, and executes a pure functional fold (`reduce()`) to recalculate the entire state timeline from scratch. This guarantees that duplicate data, network lag, and out-of-order deliveries are handled natively by the architecture, rather than by brittle application-level patch logic.
+- **Fixtures**: All JSON test scenarios and expected outcomes are located at `/fixtures/*.json`.
+- **Audit Outputs**: The complete mathematical trace and decision logs for any drone can be downloaded via the **"Export Audit"** button on the C2 Dashboard UI, or by directly querying the `GET /api/drones/[id]/audit` endpoint.
