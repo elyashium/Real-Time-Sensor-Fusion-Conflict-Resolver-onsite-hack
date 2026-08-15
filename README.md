@@ -2,6 +2,9 @@
 
 <img width="1919" height="1076" alt="image" src="https://github.com/user-attachments/assets/b2f5d039-ad39-49ba-ba4d-e841305ca4e8" />
 
+<img width="1919" height="1068" alt="image" src="https://github.com/user-attachments/assets/6420241f-3139-4817-836d-5631b0b5d584" />
+
+
 ## Project Overview
 A real-time sensor fusion conflict resolver for autonomous drone operations. This system ingests multi-source sensor data streams (GPS, IMU, LiDAR, Video) from multiple drones, reconstructing a consistent, time-ordered, and conflict-free state. Discrepancies and late-arriving events are resolved via a pure-functional, deterministic logic engine, providing a mathematically rigorous and explainable audit trail for every decision.
 
