@@ -12,6 +12,7 @@ const FIXTURES: { id: string, label: string, icon: ReactNode }[] = [
   { id: "05-out-of-order-replay", label: "Out of Order Replay", icon: <Rewind size={14} /> },
   { id: "06-both-low-confidence-unresolved", label: "Low Confidence (Unresolved)", icon: <AlertTriangle size={14} /> },
   { id: "07-state-reverts-to-previous-position", label: "State Reversion", icon: <RefreshCw size={14} /> },
+  { id: "08-massive-fleet-demo", label: "Massive Fleet (50 Drones)", icon: <Zap size={14} /> },
 ];
 
 interface FixtureLoaderProps {

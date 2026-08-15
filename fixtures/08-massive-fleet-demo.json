@@ -1,0 +1,5232 @@
+{
+  "fixtureId": "08-massive-fleet-demo",
+  "description": "Massive fleet simulation containing 50 drones to populate the UI for the hackathon demo. Includes normal drones, resolved conflicts, missing sensors, and unresolved low-confidence anomalies.",
+  "events": [
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.680978499546093,
+        "lon": 77.25614546958758,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.680978499546093,
+        "lon": 77.25614546958758,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.681078499546093,
+        "lon": 77.25624546958758,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.681078499546093,
+        "lon": 77.25624546958758,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.681178499546093,
+        "lon": 77.25634546958759,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.681178499546093,
+        "lon": 77.25634546958759,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.681278499546092,
+        "lon": 77.25644546958758,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.681278499546092,
+        "lon": 77.25644546958758,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.681378499546092,
+        "lon": 77.25654546958758,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.681378499546092,
+        "lon": 77.25654546958758,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59215800428963,
+        "lon": 77.24877026259308,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59215800428963,
+        "lon": 77.24877026259308,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59225800428963,
+        "lon": 77.24887026259309,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59225800428963,
+        "lon": 77.24887026259309,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59235800428963,
+        "lon": 77.24897026259309,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59235800428963,
+        "lon": 77.24897026259309,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59245800428963,
+        "lon": 77.24907026259308,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59245800428963,
+        "lon": 77.24907026259308,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59255800428963,
+        "lon": 77.24917026259308,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59255800428963,
+        "lon": 77.24917026259308,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.632573557524914,
+        "lon": 77.22762487968393,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.632573557524914,
+        "lon": 77.22762487968393,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.632673557524914,
+        "lon": 77.22772487968393,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.632673557524914,
+        "lon": 77.22772487968393,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.632773557524914,
+        "lon": 77.22782487968394,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.632773557524914,
+        "lon": 77.22782487968394,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.632873557524913,
+        "lon": 77.22792487968393,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.632873557524913,
+        "lon": 77.22792487968393,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.632973557524913,
+        "lon": 77.22802487968393,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.632973557524913,
+        "lon": 77.22802487968393,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64944818756446,
+        "lon": 77.23429760359143,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64944818756446,
+        "lon": 77.23429760359143,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64954818756446,
+        "lon": 77.23439760359143,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64954818756446,
+        "lon": 77.23439760359143,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64964818756446,
+        "lon": 77.23449760359144,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64964818756446,
+        "lon": 77.23449760359144,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64974818756446,
+        "lon": 77.23459760359142,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64974818756446,
+        "lon": 77.23459760359142,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64984818756446,
+        "lon": 77.23469760359143,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64984818756446,
+        "lon": 77.23469760359143,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.621374808809904,
+        "lon": 77.20723797385268,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.621374808809904,
+        "lon": 77.20723797385268,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.621474808809904,
+        "lon": 77.20733797385269,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.621474808809904,
+        "lon": 77.20733797385269,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.621574808809903,
+        "lon": 77.20743797385269,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.621574808809903,
+        "lon": 77.20743797385269,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.621674808809903,
+        "lon": 77.20753797385268,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.621674808809903,
+        "lon": 77.20753797385268,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.621774808809903,
+        "lon": 77.20763797385268,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.621774808809903,
+        "lon": 77.20763797385268,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.582008637189446,
+        "lon": 77.18011281425717,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.582008637189446,
+        "lon": 77.18011281425717,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.582108637189446,
+        "lon": 77.18021281425717,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.582108637189446,
+        "lon": 77.18021281425717,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.582208637189446,
+        "lon": 77.18031281425718,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.582208637189446,
+        "lon": 77.18031281425718,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.582308637189445,
+        "lon": 77.18041281425717,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.582308637189445,
+        "lon": 77.18041281425717,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.582408637189445,
+        "lon": 77.18051281425717,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-06",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.582408637189445,
+        "lon": 77.18051281425717,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64714343708431,
+        "lon": 77.2272140304548,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64714343708431,
+        "lon": 77.2272140304548,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64724343708431,
+        "lon": 77.2273140304548,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64724343708431,
+        "lon": 77.2273140304548,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64734343708431,
+        "lon": 77.22741403045481,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64734343708431,
+        "lon": 77.22741403045481,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64744343708431,
+        "lon": 77.2275140304548,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64744343708431,
+        "lon": 77.2275140304548,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.64754343708431,
+        "lon": 77.2276140304548,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-07",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.64754343708431,
+        "lon": 77.2276140304548,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53961227224217,
+        "lon": 77.21827779800017,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53961227224217,
+        "lon": 77.21827779800017,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53971227224217,
+        "lon": 77.21837779800018,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53971227224217,
+        "lon": 77.21837779800018,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53981227224217,
+        "lon": 77.21847779800018,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53981227224217,
+        "lon": 77.21847779800018,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53991227224217,
+        "lon": 77.21857779800017,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53991227224217,
+        "lon": 77.21857779800017,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.54001227224217,
+        "lon": 77.21867779800017,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-08",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.54001227224217,
+        "lon": 77.21867779800017,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65524250193061,
+        "lon": 77.23832006684025,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65524250193061,
+        "lon": 77.23832006684025,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65534250193061,
+        "lon": 77.23842006684025,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65534250193061,
+        "lon": 77.23842006684025,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.655442501930608,
+        "lon": 77.23852006684025,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.655442501930608,
+        "lon": 77.23852006684025,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.655542501930608,
+        "lon": 77.23862006684024,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.655542501930608,
+        "lon": 77.23862006684024,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.655642501930608,
+        "lon": 77.23872006684024,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-09",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.655642501930608,
+        "lon": 77.23872006684024,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65526693529664,
+        "lon": 77.188269817289,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65526693529664,
+        "lon": 77.188269817289,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65536693529664,
+        "lon": 77.188369817289,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65536693529664,
+        "lon": 77.188369817289,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65546693529664,
+        "lon": 77.188469817289,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65546693529664,
+        "lon": 77.188469817289,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65556693529664,
+        "lon": 77.188569817289,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65556693529664,
+        "lon": 77.188569817289,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65566693529664,
+        "lon": 77.188669817289,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-10",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.65566693529664,
+        "lon": 77.188669817289,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610425464212966,
+        "lon": 77.27862601209685,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.610425464212966,
+        "lon": 77.27862601209685,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610525464212966,
+        "lon": 77.27872601209685,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.610525464212966,
+        "lon": 77.27872601209685,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610625464212966,
+        "lon": 77.27882601209686,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.610625464212966,
+        "lon": 77.27882601209686,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610725464212965,
+        "lon": 77.27892601209685,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.610725464212965,
+        "lon": 77.27892601209685,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610825464212965,
+        "lon": 77.27902601209685,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-11",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.610825464212965,
+        "lon": 77.27902601209685,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.568336166512868,
+        "lon": 77.2135640157863,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.568336166512868,
+        "lon": 77.2135640157863,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.568436166512868,
+        "lon": 77.2136640157863,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.568436166512868,
+        "lon": 77.2136640157863,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.568536166512867,
+        "lon": 77.21376401578631,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.568536166512867,
+        "lon": 77.21376401578631,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.568636166512867,
+        "lon": 77.2138640157863,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.568636166512867,
+        "lon": 77.2138640157863,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.568736166512867,
+        "lon": 77.2139640157863,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-12",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.568736166512867,
+        "lon": 77.2139640157863,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.61246519311313,
+        "lon": 77.1455263625461,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61246519311313,
+        "lon": 77.1455263625461,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.61256519311313,
+        "lon": 77.1456263625461,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61256519311313,
+        "lon": 77.1456263625461,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.61266519311313,
+        "lon": 77.1457263625461,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61266519311313,
+        "lon": 77.1457263625461,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.61276519311313,
+        "lon": 77.14582636254609,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61276519311313,
+        "lon": 77.14582636254609,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.61286519311313,
+        "lon": 77.14592636254609,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-13",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61286519311313,
+        "lon": 77.14592636254609,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67506465671964,
+        "lon": 77.20500870332013,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67506465671964,
+        "lon": 77.20500870332013,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67516465671964,
+        "lon": 77.20510870332014,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67516465671964,
+        "lon": 77.20510870332014,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67526465671964,
+        "lon": 77.20520870332014,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67526465671964,
+        "lon": 77.20520870332014,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67536465671964,
+        "lon": 77.20530870332013,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67536465671964,
+        "lon": 77.20530870332013,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67546465671964,
+        "lon": 77.20540870332013,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-14",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67546465671964,
+        "lon": 77.20540870332013,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67210358595997,
+        "lon": 77.16520216758549,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67210358595997,
+        "lon": 77.16520216758549,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67220358595997,
+        "lon": 77.1653021675855,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67220358595997,
+        "lon": 77.1653021675855,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67230358595997,
+        "lon": 77.1654021675855,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67230358595997,
+        "lon": 77.1654021675855,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67240358595997,
+        "lon": 77.16550216758549,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67240358595997,
+        "lon": 77.16550216758549,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.67250358595997,
+        "lon": 77.16560216758549,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-15",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67250358595997,
+        "lon": 77.16560216758549,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.567329375302624,
+        "lon": 77.17463373659383,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.567329375302624,
+        "lon": 77.17463373659383,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.567429375302623,
+        "lon": 77.17473373659384,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.567429375302623,
+        "lon": 77.17473373659384,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.567529375302623,
+        "lon": 77.17483373659384,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.567529375302623,
+        "lon": 77.17483373659384,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.567629375302623,
+        "lon": 77.17493373659383,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.567629375302623,
+        "lon": 77.17493373659383,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.567729375302623,
+        "lon": 77.17503373659383,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-16",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.567729375302623,
+        "lon": 77.17503373659383,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.608019811069795,
+        "lon": 77.14207958674136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.608019811069795,
+        "lon": 77.14207958674136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.608119811069795,
+        "lon": 77.14217958674136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.608119811069795,
+        "lon": 77.14217958674136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.608219811069795,
+        "lon": 77.14227958674137,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.608219811069795,
+        "lon": 77.14227958674137,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.608319811069794,
+        "lon": 77.14237958674136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.608319811069794,
+        "lon": 77.14237958674136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.608419811069794,
+        "lon": 77.14247958674136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-17",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.608419811069794,
+        "lon": 77.14247958674136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.593977734246977,
+        "lon": 77.26384660661436,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.593977734246977,
+        "lon": 77.26384660661436,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.594077734246977,
+        "lon": 77.26394660661437,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.594077734246977,
+        "lon": 77.26394660661437,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.594177734246976,
+        "lon": 77.26404660661437,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.594177734246976,
+        "lon": 77.26404660661437,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.594277734246976,
+        "lon": 77.26414660661436,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.594277734246976,
+        "lon": 77.26414660661436,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.594377734246976,
+        "lon": 77.26424660661436,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-18",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.594377734246976,
+        "lon": 77.26424660661436,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.63125587925532,
+        "lon": 77.17018517204457,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63125587925532,
+        "lon": 77.17018517204457,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.63135587925532,
+        "lon": 77.17028517204457,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63135587925532,
+        "lon": 77.17028517204457,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.63145587925532,
+        "lon": 77.17038517204458,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63145587925532,
+        "lon": 77.17038517204458,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.63155587925532,
+        "lon": 77.17048517204456,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63155587925532,
+        "lon": 77.17048517204456,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.63165587925532,
+        "lon": 77.17058517204457,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-19",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63165587925532,
+        "lon": 77.17058517204457,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.56098662372549,
+        "lon": 77.19100909150072,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.56098662372549,
+        "lon": 77.19100909150072,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.56108662372549,
+        "lon": 77.19110909150072,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.56108662372549,
+        "lon": 77.19110909150072,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.56118662372549,
+        "lon": 77.19120909150072,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.56118662372549,
+        "lon": 77.19120909150072,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.56128662372549,
+        "lon": 77.19130909150071,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.56128662372549,
+        "lon": 77.19130909150071,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.56138662372549,
+        "lon": 77.19140909150072,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-20",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.56138662372549,
+        "lon": 77.19140909150072,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.549600804092194,
+        "lon": 77.1950087771267,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.549600804092194,
+        "lon": 77.1950087771267,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.549700804092193,
+        "lon": 77.1951087771267,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.549700804092193,
+        "lon": 77.1951087771267,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.549800804092193,
+        "lon": 77.19520877712671,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.549800804092193,
+        "lon": 77.19520877712671,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.549900804092193,
+        "lon": 77.1953087771267,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.549900804092193,
+        "lon": 77.1953087771267,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.550000804092193,
+        "lon": 77.1954087771267,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-21",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.550000804092193,
+        "lon": 77.1954087771267,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.602417303827618,
+        "lon": 77.23078596789047,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.602417303827618,
+        "lon": 77.23078596789047,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.602517303827618,
+        "lon": 77.23088596789047,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.602517303827618,
+        "lon": 77.23088596789047,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.602617303827618,
+        "lon": 77.23098596789048,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.602617303827618,
+        "lon": 77.23098596789048,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.602717303827617,
+        "lon": 77.23108596789046,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.602717303827617,
+        "lon": 77.23108596789046,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.602817303827617,
+        "lon": 77.23118596789047,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-22",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.602817303827617,
+        "lon": 77.23118596789047,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.662091179763166,
+        "lon": 77.21437133800562,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.662091179763166,
+        "lon": 77.21437133800562,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.662191179763166,
+        "lon": 77.21447133800562,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.662191179763166,
+        "lon": 77.21447133800562,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.662291179763166,
+        "lon": 77.21457133800563,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.662291179763166,
+        "lon": 77.21457133800563,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.662391179763166,
+        "lon": 77.21467133800562,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.662391179763166,
+        "lon": 77.21467133800562,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.662491179763165,
+        "lon": 77.21477133800562,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-23",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.662491179763165,
+        "lon": 77.21477133800562,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53964126159331,
+        "lon": 77.21419243483734,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53964126159331,
+        "lon": 77.21419243483734,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53974126159331,
+        "lon": 77.21429243483735,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53974126159331,
+        "lon": 77.21429243483735,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53984126159331,
+        "lon": 77.21439243483735,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53984126159331,
+        "lon": 77.21439243483735,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.53994126159331,
+        "lon": 77.21449243483734,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.53994126159331,
+        "lon": 77.21449243483734,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.54004126159331,
+        "lon": 77.21459243483734,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-24",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.54004126159331,
+        "lon": 77.21459243483734,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.650263534040125,
+        "lon": 77.21358256646576,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.650263534040125,
+        "lon": 77.21358256646576,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.650363534040125,
+        "lon": 77.21368256646576,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.650363534040125,
+        "lon": 77.21368256646576,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.650463534040124,
+        "lon": 77.21378256646577,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.650463534040124,
+        "lon": 77.21378256646577,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.650563534040124,
+        "lon": 77.21388256646576,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.650563534040124,
+        "lon": 77.21388256646576,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.650663534040124,
+        "lon": 77.21398256646576,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-25",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.650663534040124,
+        "lon": 77.21398256646576,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.66938342294687,
+        "lon": 77.14152156379453,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.66938342294687,
+        "lon": 77.14152156379453,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.66948342294687,
+        "lon": 77.14162156379453,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.66948342294687,
+        "lon": 77.14162156379453,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.669583422946868,
+        "lon": 77.14172156379453,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.669583422946868,
+        "lon": 77.14172156379453,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.669683422946868,
+        "lon": 77.14182156379452,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.669683422946868,
+        "lon": 77.14182156379452,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.669783422946868,
+        "lon": 77.14192156379453,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-26",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.669783422946868,
+        "lon": 77.14192156379453,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.623324500338416,
+        "lon": 77.2498307555196,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.623324500338416,
+        "lon": 77.2498307555196,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.623424500338416,
+        "lon": 77.2499307555196,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.623424500338416,
+        "lon": 77.2499307555196,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.623524500338416,
+        "lon": 77.2500307555196,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.623524500338416,
+        "lon": 77.2500307555196,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.623624500338416,
+        "lon": 77.25013075551959,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.623624500338416,
+        "lon": 77.25013075551959,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.623724500338415,
+        "lon": 77.2502307555196,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-27",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.623724500338415,
+        "lon": 77.2502307555196,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.664791724464703,
+        "lon": 77.14614615161136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664791724464703,
+        "lon": 77.14614615161136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.664891724464702,
+        "lon": 77.14624615161136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664891724464702,
+        "lon": 77.14624615161136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.664991724464702,
+        "lon": 77.14634615161137,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664991724464702,
+        "lon": 77.14634615161137,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665091724464702,
+        "lon": 77.14644615161136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.665091724464702,
+        "lon": 77.14644615161136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.6651917244647,
+        "lon": 77.14654615161136,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-28",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.6651917244647,
+        "lon": 77.14654615161136,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.598438650325587,
+        "lon": 77.15652653851238,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.598438650325587,
+        "lon": 77.15652653851238,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.598538650325587,
+        "lon": 77.15662653851238,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.598538650325587,
+        "lon": 77.15662653851238,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.598638650325586,
+        "lon": 77.15672653851239,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.598638650325586,
+        "lon": 77.15672653851239,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.598738650325586,
+        "lon": 77.15682653851238,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.598738650325586,
+        "lon": 77.15682653851238,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.598838650325586,
+        "lon": 77.15692653851238,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-29",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.598838650325586,
+        "lon": 77.15692653851238,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59769511514657,
+        "lon": 77.27599828545875,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59769511514657,
+        "lon": 77.27599828545875,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59779511514657,
+        "lon": 77.27609828545876,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59779511514657,
+        "lon": 77.27609828545876,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59789511514657,
+        "lon": 77.27619828545876,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59789511514657,
+        "lon": 77.27619828545876,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59799511514657,
+        "lon": 77.27629828545875,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59799511514657,
+        "lon": 77.27629828545875,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59809511514657,
+        "lon": 77.27639828545875,
+        "alt": 100
+      },
+      "confidence": 0.95
+    },
+    {
+      "drone_id": "drone-patrol-30",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.59809511514657,
+        "lon": 77.27639828545875,
+        "alt": 100
+      },
+      "confidence": 0.92
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.595173745794735,
+        "lon": 77.17831273671729,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.596173745794736,
+        "lon": 77.17931273671729,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.595173745794735,
+        "lon": 77.17831273671729,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.596173745794736,
+        "lon": 77.17931273671729,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.595173745794735,
+        "lon": 77.17831273671729,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.596173745794736,
+        "lon": 77.17931273671729,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.595173745794735,
+        "lon": 77.17831273671729,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.596173745794736,
+        "lon": 77.17931273671729,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.595173745794735,
+        "lon": 77.17831273671729,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.596173745794736,
+        "lon": 77.17931273671729,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.60204110013701,
+        "lon": 77.20126703625297,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.603041100137013,
+        "lon": 77.20226703625298,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.60204110013701,
+        "lon": 77.20126703625297,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.603041100137013,
+        "lon": 77.20226703625298,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.60204110013701,
+        "lon": 77.20126703625297,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.603041100137013,
+        "lon": 77.20226703625298,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.60204110013701,
+        "lon": 77.20126703625297,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.603041100137013,
+        "lon": 77.20226703625298,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.60204110013701,
+        "lon": 77.20126703625297,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.603041100137013,
+        "lon": 77.20226703625298,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.571866555967986,
+        "lon": 77.1724925793494,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.572866555967988,
+        "lon": 77.1734925793494,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.571866555967986,
+        "lon": 77.1724925793494,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.572866555967988,
+        "lon": 77.1734925793494,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.571866555967986,
+        "lon": 77.1724925793494,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.572866555967988,
+        "lon": 77.1734925793494,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.571866555967986,
+        "lon": 77.1724925793494,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.572866555967988,
+        "lon": 77.1734925793494,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.571866555967986,
+        "lon": 77.1724925793494,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.572866555967988,
+        "lon": 77.1734925793494,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.638879159095712,
+        "lon": 77.13518757326305,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.639879159095713,
+        "lon": 77.13618757326306,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.638879159095712,
+        "lon": 77.13518757326305,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.639879159095713,
+        "lon": 77.13618757326306,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.638879159095712,
+        "lon": 77.13518757326305,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.639879159095713,
+        "lon": 77.13618757326306,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.638879159095712,
+        "lon": 77.13518757326305,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.639879159095713,
+        "lon": 77.13618757326306,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.638879159095712,
+        "lon": 77.13518757326305,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.639879159095713,
+        "lon": 77.13618757326306,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.663668200261057,
+        "lon": 77.15093700175275,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664668200261058,
+        "lon": 77.15193700175276,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.663668200261057,
+        "lon": 77.15093700175275,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664668200261058,
+        "lon": 77.15193700175276,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.663668200261057,
+        "lon": 77.15093700175275,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664668200261058,
+        "lon": 77.15193700175276,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.663668200261057,
+        "lon": 77.15093700175275,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664668200261058,
+        "lon": 77.15193700175276,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.663668200261057,
+        "lon": 77.15093700175275,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.664668200261058,
+        "lon": 77.15193700175276,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665837849496373,
+        "lon": 77.21236630209206,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.666837849496375,
+        "lon": 77.21336630209207,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665837849496373,
+        "lon": 77.21236630209206,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.666837849496375,
+        "lon": 77.21336630209207,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665837849496373,
+        "lon": 77.21236630209206,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.666837849496375,
+        "lon": 77.21336630209207,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665837849496373,
+        "lon": 77.21236630209206,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.666837849496375,
+        "lon": 77.21336630209207,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.665837849496373,
+        "lon": 77.21236630209206,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-06",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.666837849496375,
+        "lon": 77.21336630209207,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.677847326334366,
+        "lon": 77.20268826358031,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.678847326334367,
+        "lon": 77.20368826358032,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.677847326334366,
+        "lon": 77.20268826358031,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.678847326334367,
+        "lon": 77.20368826358032,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.677847326334366,
+        "lon": 77.20268826358031,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.678847326334367,
+        "lon": 77.20368826358032,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.677847326334366,
+        "lon": 77.20268826358031,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.678847326334367,
+        "lon": 77.20368826358032,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.677847326334366,
+        "lon": 77.20268826358031,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-07",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.678847326334367,
+        "lon": 77.20368826358032,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65163391268891,
+        "lon": 77.13951032546663,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.652633912688913,
+        "lon": 77.14051032546664,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65163391268891,
+        "lon": 77.13951032546663,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.652633912688913,
+        "lon": 77.14051032546664,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65163391268891,
+        "lon": 77.13951032546663,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.652633912688913,
+        "lon": 77.14051032546664,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65163391268891,
+        "lon": 77.13951032546663,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.652633912688913,
+        "lon": 77.14051032546664,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.65163391268891,
+        "lon": 77.13951032546663,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-08",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.652633912688913,
+        "lon": 77.14051032546664,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.628526681569465,
+        "lon": 77.13590221499753,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.629526681569466,
+        "lon": 77.13690221499753,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.628526681569465,
+        "lon": 77.13590221499753,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.629526681569466,
+        "lon": 77.13690221499753,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.628526681569465,
+        "lon": 77.13590221499753,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.629526681569466,
+        "lon": 77.13690221499753,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.628526681569465,
+        "lon": 77.13590221499753,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.629526681569466,
+        "lon": 77.13690221499753,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.628526681569465,
+        "lon": 77.13590221499753,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-09",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.629526681569466,
+        "lon": 77.13690221499753,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610339955533526,
+        "lon": 77.24705882442892,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.611339955533527,
+        "lon": 77.24805882442892,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610339955533526,
+        "lon": 77.24705882442892,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.611339955533527,
+        "lon": 77.24805882442892,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610339955533526,
+        "lon": 77.24705882442892,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.611339955533527,
+        "lon": 77.24805882442892,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610339955533526,
+        "lon": 77.24705882442892,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.611339955533527,
+        "lon": 77.24805882442892,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.610339955533526,
+        "lon": 77.24705882442892,
+        "alt": 100
+      },
+      "confidence": 0.85
+    },
+    {
+      "drone_id": "drone-conflict-10",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.611339955533527,
+        "lon": 77.24805882442892,
+        "alt": 100
+      },
+      "confidence": 0.9
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.672339851177952,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67283985117795,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.672339851177952,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67283985117795,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.672339851177952,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67283985117795,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.672339851177952,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67283985117795,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.672339851177952,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.67283985117795,
+        "lon": 77.24263317732105,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.604178998787848,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.604678998787847,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.604178998787848,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.604678998787847,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.604178998787848,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.604678998787847,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.604178998787848,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.604678998787847,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.604178998787848,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.604678998787847,
+        "lon": 77.1611721894144,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.600287863705255,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.600787863705253,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.600287863705255,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.600787863705253,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.600287863705255,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.600787863705253,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.600287863705255,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.600787863705253,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.600287863705255,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.600787863705253,
+        "lon": 77.22300119933489,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.560329309693604,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.560829309693602,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.560329309693604,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.560829309693602,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.560329309693604,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.560829309693602,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.560329309693604,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.560829309693602,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.560329309693604,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.560829309693602,
+        "lon": 77.1911311740413,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59461359577804,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.595113595778038,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59461359577804,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.595113595778038,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59461359577804,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.595113595778038,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59461359577804,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.595113595778038,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "GPS",
+      "position": {
+        "lat": 28.59461359577804,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.45
+    },
+    {
+      "drone_id": "drone-unresolved-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.595113595778038,
+        "lon": 77.25696027424584,
+        "alt": 100
+      },
+      "confidence": 0.55
+    },
+    {
+      "drone_id": "drone-blindspot-01",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.649679223489198,
+        "lon": 77.28100053191073,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-01",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.649679223489198,
+        "lon": 77.28100053191073,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-01",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.649679223489198,
+        "lon": 77.28100053191073,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-01",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.649679223489198,
+        "lon": 77.28100053191073,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-01",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.649679223489198,
+        "lon": 77.28100053191073,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-02",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61493808237728,
+        "lon": 77.27415571317326,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-02",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61493808237728,
+        "lon": 77.27415571317326,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-02",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61493808237728,
+        "lon": 77.27415571317326,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-02",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61493808237728,
+        "lon": 77.27415571317326,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-02",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.61493808237728,
+        "lon": 77.27415571317326,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-03",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.683170329420363,
+        "lon": 77.2371142660609,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-03",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.683170329420363,
+        "lon": 77.2371142660609,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-03",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.683170329420363,
+        "lon": 77.2371142660609,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-03",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.683170329420363,
+        "lon": 77.2371142660609,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-03",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.683170329420363,
+        "lon": 77.2371142660609,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-04",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63521401283949,
+        "lon": 77.15123714631093,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-04",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63521401283949,
+        "lon": 77.15123714631093,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-04",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63521401283949,
+        "lon": 77.15123714631093,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-04",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63521401283949,
+        "lon": 77.15123714631093,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-04",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.63521401283949,
+        "lon": 77.15123714631093,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-05",
+      "timestamp": "2026-08-15T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.670875704632653,
+        "lon": 77.1639765076135,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-05",
+      "timestamp": "2026-08-15T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.670875704632653,
+        "lon": 77.1639765076135,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-05",
+      "timestamp": "2026-08-15T10:00:10.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.670875704632653,
+        "lon": 77.1639765076135,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-05",
+      "timestamp": "2026-08-15T10:00:15.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.670875704632653,
+        "lon": 77.1639765076135,
+        "alt": 100
+      },
+      "confidence": 0.88
+    },
+    {
+      "drone_id": "drone-blindspot-05",
+      "timestamp": "2026-08-15T10:00:20.000Z",
+      "source": "LiDAR",
+      "position": {
+        "lat": 28.670875704632653,
+        "lon": 77.1639765076135,
+        "alt": 100
+      },
+      "confidence": 0.88
+    }
+  ],
+  "expectedOutcomes": []
+}
