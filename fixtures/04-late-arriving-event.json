@@ -1,0 +1,44 @@
+{
+  "fixtureId": "04-late-arriving-event",
+  "description": "drone-charlie's events are SUBMITTED in the order given by _submitOrder, but event 3's timestamp is ~10 minutes earlier than events already ingested. The reducer must fold it into its correct chronological position, not append it after the latest state.",
+  "maps_to_test": "tests/ordering.test.ts",
+  "events": [
+    {
+      "_submitOrder": 1,
+      "drone_id": "drone-charlie",
+      "timestamp": "2026-06-01T10:05:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.75000, "lon": -122.43000, "alt": 150.0 },
+      "confidence": 0.90
+    },
+    {
+      "_submitOrder": 2,
+      "drone_id": "drone-charlie",
+      "timestamp": "2026-06-01T10:10:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 },
+      "confidence": 0.90
+    },
+    {
+      "_submitOrder": 3,
+      "_comment": "Arrives last (3rd submission) but its event_timestamp is before both prior events — ~10 minutes late per the PRD's example edge case.",
+      "drone_id": "drone-charlie",
+      "timestamp": "2026-06-01T09:55:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.74950, "lon": -122.42940, "alt": 148.0 },
+      "confidence": 0.85
+    }
+  ],
+  "expectedOutcomes": [
+    {
+      "afterAllSubmitted": true,
+      "reconstructedTimelineOrder": [
+        { "timestamp": "2026-06-01T09:55:00.000Z", "position": { "lat": 37.74950, "lon": -122.42940, "alt": 148.0 } },
+        { "timestamp": "2026-06-01T10:05:00.000Z", "position": { "lat": 37.75000, "lon": -122.43000, "alt": 150.0 } },
+        { "timestamp": "2026-06-01T10:10:00.000Z", "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 } }
+      ],
+      "latestState": { "position": { "lat": 37.75050, "lon": -122.43060, "alt": 152.0 }, "timestamp": "2026-06-01T10:10:00.000Z" },
+      "note": "Latest state is unaffected (no conflict at any timestamp — single source throughout), but the audit trail / drone_state_versions history must show the late event inserted at 09:55, not appended after 10:10."
+    }
+  ]
+}

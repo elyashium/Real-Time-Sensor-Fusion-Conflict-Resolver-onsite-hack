@@ -1,0 +1,49 @@
+{
+  "fixtureId": "05-out-of-order-replay",
+  "description": "Identical event set to fixture 01, but shuffled submission order and flagged as a replay. Final resolved state and every conflict_decisions row must be byte-identical to fixture 01's outcome, proving the resolver is order-independent (canonical order is derived from event_timestamp+source+id, never submission order).",
+  "maps_to_test": "tests/ordering.test.ts, tests/determinism.test.ts",
+  "compareAgainst": "01-basic-gps-lidar-conflict.json",
+  "events": [
+    {
+      "_submitOrder": 1,
+      "replay": true,
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": { "lat": 37.77522, "lon": -122.41978, "alt": 121.0 },
+      "confidence": 0.85
+    },
+    {
+      "_submitOrder": 2,
+      "replay": true,
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": { "lat": 37.77505, "lon": -122.41960, "alt": 118.0 },
+      "confidence": 0.70
+    },
+    {
+      "_submitOrder": 3,
+      "replay": true,
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.77490, "lon": -122.41940, "alt": 120.0 },
+      "confidence": 0.91
+    },
+    {
+      "_submitOrder": 4,
+      "replay": true,
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:05.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.77520, "lon": -122.41975, "alt": 122.0 },
+      "confidence": 0.75
+    }
+  ],
+  "expectedOutcomes": [
+    {
+      "note": "Run tests/determinism.test.ts comparing the final drone_state_versions and conflict_decisions for drone-alpha against the result of replaying fixture 01. They must be deep-equal aside from ingested_at/created_at wall-clock columns."
+    }
+  ]
+}

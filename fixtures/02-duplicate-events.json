@@ -1,0 +1,46 @@
+{
+  "fixtureId": "02-duplicate-events",
+  "description": "Exercises dedupe_key behavior: identity is (drone_id, source, timestamp) only. Event 2 is a byte-identical resubmission. Event 3 has the SAME identity key but different position/confidence (e.g. a client retry that 'corrected' values) — it must still be rejected as a duplicate, because dedupe is on identity, not payload content.",
+  "maps_to_test": "tests/ingestion.test.ts, tests/idempotency.test.ts",
+  "events": [
+    {
+      "_submitOrder": 1,
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T11:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+      "confidence": 0.88
+    },
+    {
+      "_submitOrder": 2,
+      "_comment": "Byte-identical resubmission of event 1.",
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T11:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+      "confidence": 0.88
+    },
+    {
+      "_submitOrder": 3,
+      "_comment": "Same identity key (drone_id+source+timestamp) as event 1, but different position/confidence. Must still 409 — dedupe_key does not consider payload.",
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T11:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.78012, "lon": -122.42015, "alt": 101.5 },
+      "confidence": 0.93
+    }
+  ],
+  "expectedOutcomes": [
+    { "afterSubmitOrder": 1, "httpStatus": 200 },
+    { "afterSubmitOrder": 2, "httpStatus": 409, "reason": "duplicate" },
+    { "afterSubmitOrder": 3, "httpStatus": 409, "reason": "duplicate" },
+    {
+      "finalState": {
+        "drone_id": "drone-alpha",
+        "position": { "lat": 37.78000, "lon": -122.42000, "alt": 100.0 },
+        "confidence": 0.88,
+        "note": "Only event 1's values ever land in the state — the corrected retry in event 3 is silently rejected at the ingestion boundary, not the resolution layer."
+      }
+    }
+  ]
+}

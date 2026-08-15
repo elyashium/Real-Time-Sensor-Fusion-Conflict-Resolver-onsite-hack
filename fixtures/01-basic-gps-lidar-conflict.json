@@ -1,0 +1,53 @@
+{
+  "fixtureId": "01-basic-gps-lidar-conflict",
+  "description": "Two conflicting GPS/LiDAR pairs for the same drone at different timestamps, exercising both branches of the default 'prefer GPS if confidence > 0.8, else LiDAR' rule.",
+  "maps_to_test": "tests/conflict-rules.test.ts",
+  "events": [
+    {
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.77490, "lon": -122.41940, "alt": 120.0 },
+      "confidence": 0.91
+    },
+    {
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:00.000Z",
+      "source": "LiDAR",
+      "position": { "lat": 37.77505, "lon": -122.41960, "alt": 118.0 },
+      "confidence": 0.70
+    },
+    {
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:05.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.77520, "lon": -122.41975, "alt": 122.0 },
+      "confidence": 0.75
+    },
+    {
+      "drone_id": "drone-alpha",
+      "timestamp": "2026-06-01T10:00:05.000Z",
+      "source": "LiDAR",
+      "position": { "lat": 37.77522, "lon": -122.41978, "alt": 121.0 },
+      "confidence": 0.85
+    }
+  ],
+  "expectedOutcomes": [
+    {
+      "afterEventIndex": 1,
+      "decisionTimestamp": "2026-06-01T10:00:00.000Z",
+      "status": "resolved",
+      "sourceOfTruth": "GPS",
+      "ruleApplied": "GPS preferred: confidence 0.91 > 0.8",
+      "note": "GPS confidence exceeds 0.8, so GPS wins outright."
+    },
+    {
+      "afterEventIndex": 3,
+      "decisionTimestamp": "2026-06-01T10:00:05.000Z",
+      "status": "resolved",
+      "sourceOfTruth": "LiDAR",
+      "ruleApplied": "LiDAR preferred: GPS confidence 0.75 <= 0.8",
+      "note": "GPS confidence at or below 0.8, so LiDAR is preferred per the default rule."
+    }
+  ]
+}

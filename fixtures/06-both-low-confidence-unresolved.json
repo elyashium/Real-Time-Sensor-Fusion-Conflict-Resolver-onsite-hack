@@ -1,0 +1,31 @@
+{
+  "fixtureId": "06-both-low-confidence-unresolved",
+  "description": "GPS and LiDAR disagree on position for drone-delta, and both report confidence below 0.6. Per the default rule, this must resolve to status 'unresolved' rather than picking a winner arbitrarily.",
+  "maps_to_test": "tests/conflict-rules.test.ts",
+  "events": [
+    {
+      "drone_id": "drone-delta",
+      "timestamp": "2026-06-01T13:00:00.000Z",
+      "source": "GPS",
+      "position": { "lat": 37.76000, "lon": -122.45000, "alt": 60.0 },
+      "confidence": 0.35
+    },
+    {
+      "drone_id": "drone-delta",
+      "timestamp": "2026-06-01T13:00:00.000Z",
+      "source": "LiDAR",
+      "position": { "lat": 37.76020, "lon": -122.45030, "alt": 58.0 },
+      "confidence": 0.50
+    }
+  ],
+  "expectedOutcomes": [
+    {
+      "afterEventIndex": 1,
+      "decisionTimestamp": "2026-06-01T13:00:00.000Z",
+      "status": "unresolved",
+      "sourceOfTruth": null,
+      "ruleApplied": "unresolved: all sources below 0.6 confidence (GPS 0.35, LiDAR 0.50)",
+      "note": "Dashboard should visibly flag this drone as unresolved rather than silently defaulting to either sensor."
+    }
+  ]
+}
